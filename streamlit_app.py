@@ -5,6 +5,11 @@ import plotly.graph_objects as go
 from datetime import datetime
 import plotly.express as px
 
+
+def get_subdirectories(base_dir):
+    return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+
+
 def load_data(directory):
     csv_files = [f for f in os.listdir(directory) if f.endswith('.csv')]
     all_data = []
@@ -12,7 +17,8 @@ def load_data(directory):
         df = pd.read_csv(os.path.join(directory, file))
         df['file_timestamp'] = datetime.strptime(file.split('_')[-1].split('.')[0], "%Y-%m-%d-%H-%M-%S")
         all_data.append(df)
-    return pd.concat(all_data, ignore_index=True)
+    return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
+
 
 def calculate_success_rates(df):
     success_rates = df.groupby('agent_id').agg({
@@ -21,12 +27,14 @@ def calculate_success_rates(df):
     success_rates.columns = ['agent_id', 'success_rate']
     return success_rates
 
+
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
         'status': lambda x: (x == 'success').mean(),
     }).reset_index()
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
+
 
 def create_heatmap(data, value_column, title):
     heatmap_pivot = data.pivot(index='ladder', columns='agent_id', values=value_column)
@@ -40,15 +48,23 @@ def create_heatmap(data, value_column, title):
     fig.update_layout(title=title)
     return fig
 
+
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
     st.title("Run Status Dashboard")
 
-    data_directory = st.sidebar.text_input("Enter the path to the data directory:", "mock_data")
+    base_dir = "data"
+    subdirs = get_subdirectories(base_dir)
 
-    if not os.path.isdir(data_directory):
-        st.error(f"The directory {data_directory} does not exist. Please enter a valid directory path.")
+    if not subdirs:
+        st.error(f"No subdirectories found in the '{base_dir}' folder.")
         return
+
+    selected_subdir = st.sidebar.selectbox("Select Data Directory", subdirs,
+                                           index=subdirs.index('bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
+    data_directory = os.path.join(base_dir, selected_subdir)
+
+    st.sidebar.text(f"Current directory: {data_directory}")
 
     all_data = load_data(data_directory)
     if all_data.empty:
@@ -78,7 +94,8 @@ def main():
         }))
 
         st.subheader("Agent-Ladder Success Rate Grid (Latest Run)")
-        heatmap_fig = create_heatmap(latest_agent_ladder_success_rates, 'success_rate', "Success Rate Grid (Latest Run)")
+        heatmap_fig = create_heatmap(latest_agent_ladder_success_rates, 'success_rate',
+                                     "Success Rate Grid (Latest Run)")
         st.plotly_chart(heatmap_fig)
 
     with tab2:
@@ -125,6 +142,7 @@ def main():
     with tab4:
         st.header("Raw Data")
         st.dataframe(all_data)
+
 
 if __name__ == "__main__":
     main()
