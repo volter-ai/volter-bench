@@ -130,14 +130,25 @@ def main():
         }))
 
         st.subheader("Individual Run Details")
-        for _, row in run_data.iterrows():
-            expander = st.expander(f"Run ID: {row['run_id']} - Ladder: {row['ladder']} - Agent: {row['agent_id']}")
-            with expander:
-                st.write(f"Status: {'✅' if row['status'] == 'success' else '❌'} {row['status']}")
-                if row['error']:
-                    st.error(f"Error: {row['error']}")
-                if row['traceback']:
-                    st.code(row['traceback'], language="python")
+
+        # Sort the run data by status (success first, then failure)
+        sorted_run_data = run_data.sort_values(by=['status', 'ladder', 'agent_id'],
+                                               ascending=[False, True, True])
+
+        # Group runs by ladder and agent
+        grouped_runs = sorted_run_data.groupby(['ladder', 'agent_id'])
+
+        for (ladder, agent_id), group in grouped_runs:
+            for i, (_, row) in enumerate(group.iterrows(), 1):
+                status_icon = '✅' if row['status'] == 'success' else '❌'
+                expander_title = f"{status_icon} {ladder} - {agent_id} (Trial {i})"
+
+                with st.expander(expander_title):
+                    st.write(f"Status: {row['status']}")
+                    if row['error']:
+                        st.error(f"Error: {row['error']}")
+                    if row['traceback']:
+                        st.code(row['traceback'], language="python")
 
     with tab4:
         st.header("Raw Data")
