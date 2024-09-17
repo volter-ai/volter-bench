@@ -5,10 +5,8 @@ import plotly.graph_objects as go
 from datetime import datetime
 import plotly.express as px
 
-
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
-
 
 def load_data(directory):
     csv_files = []
@@ -27,7 +25,6 @@ def load_data(directory):
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
-
 def calculate_success_rates(df):
     success_rates = df.groupby('agent_id').agg({
         'status': lambda x: (x == 'success').mean(),
@@ -35,14 +32,12 @@ def calculate_success_rates(df):
     success_rates.columns = ['agent_id', 'success_rate']
     return success_rates
 
-
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
         'status': lambda x: (x == 'success').mean(),
     }).reset_index()
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
-
 
 def create_heatmap(data, value_column, title):
     heatmap_pivot = data.pivot(index='ladder', columns='agent_id', values=value_column)
@@ -56,9 +51,11 @@ def create_heatmap(data, value_column, title):
     fig.update_layout(title=title)
     return fig
 
+def get_github_url(row, data_directory):
+    # Extract the subdirectory name from the data_directory path
+    subdirectory = os.path.basename(data_directory)
 
-def get_github_url(row):
-    base_url = "https://github.com/volter-ai/volter-bench/tree/main/data/bench_one_shot_view"
+    base_url = f"https://github.com/volter-ai/volter-bench/tree/main/data/{subdirectory}"
 
     # Format the timestamp to match the GitHub folder structure
     formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
@@ -72,7 +69,6 @@ def get_github_url(row):
 
     return github_url
 
-
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
     st.title("Run Status Dashboard")
@@ -85,8 +81,7 @@ def main():
         return
 
     selected_subdir = st.sidebar.selectbox("Select Data Directory", subdirs,
-                                           index=subdirs.index(
-                                               'bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
+                                           index=subdirs.index('bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
     data_directory = os.path.join(base_dir, selected_subdir)
 
     st.sidebar.text(f"Current directory: {data_directory}")
@@ -198,8 +193,18 @@ def main():
     with tab3:
         st.header("Run Details")
 
-        st.subheader("Agent-Ladder Success Rates for Selected Runs")
-        success_rates = calculate_agent_ladder_success_rates(filtered_data)
+        # Add back the ability to select a specific run
+        selected_run = st.selectbox(
+            "Select a run (Timestamp)",
+            options=sorted(filtered_data['file_timestamp'].unique(), reverse=True),
+            index=0
+        )
+
+        # Filter data for the selected run
+        run_data = filtered_data[filtered_data['file_timestamp'] == selected_run]
+
+        st.subheader("Agent-Ladder Success Rates for Selected Run")
+        success_rates = calculate_agent_ladder_success_rates(run_data)
         st.dataframe(success_rates.style.format({
             'success_rate': '{:.2%}',
         }))
@@ -207,10 +212,10 @@ def main():
         st.subheader("Individual Run Details")
 
         # Add a sorting column
-        filtered_data['sort_key'] = (filtered_data['status'] == 'success').astype(int)
+        run_data['sort_key'] = (run_data['status'] == 'success').astype(int)
 
         # Sort the run data
-        sorted_run_data = filtered_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
+        sorted_run_data = run_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
 
         # Remove the sorting column
         sorted_run_data = sorted_run_data.drop('sort_key', axis=1)
@@ -218,13 +223,13 @@ def main():
         # Display runs
         for _, row in sorted_run_data.iterrows():
             status_icon = '❌' if row['status'] != 'success' else '✅'
-            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']}) - {row['file_timestamp']}"
+            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']})"
 
             with st.expander(expander_title):
                 st.write(f"Status: {row['status']}")
 
                 # Generate and display GitHub link
-                github_url = get_github_url(row)
+                github_url = get_github_url(row, data_directory)
                 st.markdown(f"[View logs on GitHub]({github_url})")
 
                 # Only show error and traceback if they exist and aren't 'nan'
@@ -237,7 +242,6 @@ def main():
     with tab4:
         st.header("Raw Data")
         st.dataframe(filtered_data)
-
 
 if __name__ == "__main__":
     main()
