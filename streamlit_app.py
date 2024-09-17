@@ -107,13 +107,14 @@ def main():
                 'status': lambda x: (x == 'success').mean()
             }).reset_index()
             fig.add_trace(go.Scatter(x=agent_data['file_timestamp'],
-                                     y=agent_data['status'],
+                                     y=agent_data['status'] * 100,  # Convert to percentage
                                      mode='lines+markers',
                                      name=agent))
 
         fig.update_layout(title="Success Rate Over Time",
                           xaxis_title="Timestamp",
-                          yaxis_title="Success Rate")
+                          yaxis_title="Success Rate (%)",
+                          yaxis=dict(range=[0, 100]))  # Set y-axis range from 0 to 100
         st.plotly_chart(fig)
 
     with tab3:
@@ -130,14 +131,30 @@ def main():
         }))
 
         st.subheader("Individual Run Details")
-        for _, row in run_data.iterrows():
-            expander = st.expander(f"Run ID: {row['run_id']} - Ladder: {row['ladder']} - Agent: {row['agent_id']}")
-            with expander:
-                st.write(f"Status: {'✅' if row['status'] == 'success' else '❌'} {row['status']}")
-                if row['error']:
-                    st.error(f"Error: {row['error']}")
-                if row['traceback']:
-                    st.code(row['traceback'], language="python")
+
+        # Add a sorting column
+        run_data['sort_key'] = (run_data['status'] == 'success').astype(int)
+
+        # Sort the run data
+        sorted_run_data = run_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
+
+        # Remove the sorting column
+        sorted_run_data = sorted_run_data.drop('sort_key', axis=1)
+
+        # Display runs
+        for _, row in sorted_run_data.iterrows():
+            status_icon = '❌' if row['status'] != 'success' else '✅'
+            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']})"
+
+            with st.expander(expander_title):
+                st.write(f"Status: {row['status']}")
+
+                # Only show error and traceback if they exist and aren't 'nan'
+                if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
+                    if pd.notna(row['error']) and str(row['error']).lower() != 'nan':
+                        st.error(f"Error: {row['error']}")
+                    if pd.notna(row['traceback']) and str(row['traceback']).lower() != 'nan':
+                        st.code(row['traceback'], language="python")
 
     with tab4:
         st.header("Raw Data")
