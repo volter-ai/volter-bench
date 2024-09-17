@@ -107,13 +107,14 @@ def main():
                 'status': lambda x: (x == 'success').mean()
             }).reset_index()
             fig.add_trace(go.Scatter(x=agent_data['file_timestamp'],
-                                     y=agent_data['status'],
+                                     y=agent_data['status'] * 100,  # Convert to percentage
                                      mode='lines+markers',
                                      name=agent))
 
         fig.update_layout(title="Success Rate Over Time",
                           xaxis_title="Timestamp",
-                          yaxis_title="Success Rate")
+                          yaxis_title="Success Rate (%)",
+                          yaxis=dict(range=[0, 100]))  # Set y-axis range from 0 to 100
         st.plotly_chart(fig)
 
     with tab3:
@@ -145,10 +146,13 @@ def main():
 
                 with st.expander(expander_title):
                     st.write(f"Status: {row['status']}")
-                    if row['error']:
-                        st.error(f"Error: {row['error']}")
-                    if row['traceback']:
-                        st.code(row['traceback'], language="python")
+
+                    # Only show error and traceback if they exist and aren't 'nan'
+                    if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
+                        if pd.notna(row['error']) and str(row['error']).lower() != 'nan':
+                            st.error(f"Error: {row['error']}")
+                        if pd.notna(row['traceback']) and str(row['traceback']).lower() != 'nan':
+                            st.code(row['traceback'], language="python")
 
     with tab4:
         st.header("Raw Data")
