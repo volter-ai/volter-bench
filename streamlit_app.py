@@ -101,13 +101,35 @@ def main():
     with tab2:
         st.header("Agent Performance Over Time")
 
+        # Add filters
+        col1, col2 = st.columns(2)
+        with col1:
+            selected_timestamps = st.multiselect(
+                "Select Run Timestamps",
+                options=sorted(all_data['file_timestamp'].unique(), reverse=True),
+                default=sorted(all_data['file_timestamp'].unique(), reverse=True)
+            )
+        with col2:
+            selected_ladders = st.multiselect(
+                "Select Ladders",
+                options=sorted(all_data['ladder'].unique()),
+                default=sorted(all_data['ladder'].unique())
+            )
+
+        # Filter data based on selections
+        filtered_data = all_data[
+            (all_data['file_timestamp'].isin(selected_timestamps)) &
+            (all_data['ladder'].isin(selected_ladders))
+            ]
+
+        # Create the plot
         fig = go.Figure()
-        for agent in all_data['agent_id'].unique():
-            agent_data = all_data[all_data['agent_id'] == agent].groupby('file_timestamp').agg({
-                'status': lambda x: (x == 'success').mean()
+        for agent in filtered_data['agent_id'].unique():
+            agent_data = filtered_data[filtered_data['agent_id'] == agent].groupby('file_timestamp').agg({
+                'status': lambda x: (x == 'success').mean() * 100  # Convert to percentage
             }).reset_index()
             fig.add_trace(go.Scatter(x=agent_data['file_timestamp'],
-                                     y=agent_data['status'] * 100,  # Convert to percentage
+                                     y=agent_data['status'],
                                      mode='lines+markers',
                                      name=agent))
 
@@ -116,6 +138,15 @@ def main():
                           yaxis_title="Success Rate (%)",
                           yaxis=dict(range=[0, 100]))  # Set y-axis range from 0 to 100
         st.plotly_chart(fig)
+
+        # Add a data table showing the success rates
+        st.subheader("Success Rates Table")
+        success_rates = filtered_data.groupby(['file_timestamp', 'agent_id', 'ladder']).agg({
+            'status': lambda x: (x == 'success').mean() * 100  # Convert to percentage
+        }).reset_index()
+        success_rates.columns = ['Timestamp', 'Agent', 'Ladder', 'Success Rate (%)']
+        success_rates = success_rates.sort_values(['Timestamp', 'Ladder', 'Agent'], ascending=[False, True, True])
+        st.dataframe(success_rates.style.format({'Success Rate (%)': '{:.2f}'}))
 
     with tab3:
         st.header("Run Details")
