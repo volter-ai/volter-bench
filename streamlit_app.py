@@ -132,27 +132,29 @@ def main():
 
         st.subheader("Individual Run Details")
 
-        # Sort the run data by status (success first, then failure)
-        sorted_run_data = run_data.sort_values(by=['status', 'ladder', 'agent_id'],
-                                               ascending=[False, True, True])
+        # Add a sorting column
+        run_data['sort_key'] = (run_data['status'] == 'success').astype(int)
 
-        # Group runs by ladder and agent
-        grouped_runs = sorted_run_data.groupby(['ladder', 'agent_id'])
+        # Sort the run data
+        sorted_run_data = run_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
 
-        for (ladder, agent_id), group in grouped_runs:
-            for i, (_, row) in enumerate(group.iterrows(), 1):
-                status_icon = '✅' if row['status'] == 'success' else '❌'
-                expander_title = f"{status_icon} {ladder} - {agent_id} (Trial {i})"
+        # Remove the sorting column
+        sorted_run_data = sorted_run_data.drop('sort_key', axis=1)
 
-                with st.expander(expander_title):
-                    st.write(f"Status: {row['status']}")
+        # Display runs
+        for _, row in sorted_run_data.iterrows():
+            status_icon = '❌' if row['status'] != 'success' else '✅'
+            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']})"
 
-                    # Only show error and traceback if they exist and aren't 'nan'
-                    if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
-                        if pd.notna(row['error']) and str(row['error']).lower() != 'nan':
-                            st.error(f"Error: {row['error']}")
-                        if pd.notna(row['traceback']) and str(row['traceback']).lower() != 'nan':
-                            st.code(row['traceback'], language="python")
+            with st.expander(expander_title):
+                st.write(f"Status: {row['status']}")
+
+                # Only show error and traceback if they exist and aren't 'nan'
+                if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
+                    if pd.notna(row['error']) and str(row['error']).lower() != 'nan':
+                        st.error(f"Error: {row['error']}")
+                    if pd.notna(row['traceback']) and str(row['traceback']).lower() != 'nan':
+                        st.code(row['traceback'], language="python")
 
     with tab4:
         st.header("Raw Data")
