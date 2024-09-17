@@ -5,8 +5,10 @@ import plotly.graph_objects as go
 from datetime import datetime
 import plotly.express as px
 
+
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+
 
 def load_data(directory):
     csv_files = []
@@ -25,6 +27,7 @@ def load_data(directory):
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
+
 def calculate_success_rates(df):
     success_rates = df.groupby('agent_id').agg({
         'status': lambda x: (x == 'success').mean(),
@@ -32,12 +35,14 @@ def calculate_success_rates(df):
     success_rates.columns = ['agent_id', 'success_rate']
     return success_rates
 
+
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
         'status': lambda x: (x == 'success').mean(),
     }).reset_index()
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
+
 
 def create_heatmap(data, value_column, title):
     heatmap_pivot = data.pivot(index='ladder', columns='agent_id', values=value_column)
@@ -51,6 +56,23 @@ def create_heatmap(data, value_column, title):
     fig.update_layout(title=title)
     return fig
 
+
+def get_github_url(row):
+    base_url = "https://github.com/volter-ai/volter-bench/tree/main/data/bench_one_shot_view"
+
+    # Format the timestamp to match the GitHub folder structure
+    formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
+
+    # Extract the log file name from the logs path and remove any extra characters
+    log_path = row['logs'][0] if isinstance(row['logs'], list) else row['logs']
+    log_file = log_path.split('/')[-1].strip("[]'")
+
+    # Construct the GitHub URL
+    github_url = f"{base_url}/{formatted_timestamp}/new_prompt_logs/{log_file}"
+
+    return github_url
+
+
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
     st.title("Run Status Dashboard")
@@ -63,7 +85,8 @@ def main():
         return
 
     selected_subdir = st.sidebar.selectbox("Select Data Directory", subdirs,
-                                           index=subdirs.index('bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
+                                           index=subdirs.index(
+                                               'bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
     data_directory = os.path.join(base_dir, selected_subdir)
 
     st.sidebar.text(f"Current directory: {data_directory}")
@@ -200,6 +223,10 @@ def main():
             with st.expander(expander_title):
                 st.write(f"Status: {row['status']}")
 
+                # Generate and display GitHub link
+                github_url = get_github_url(row)
+                st.markdown(f"[View logs on GitHub]({github_url})")
+
                 # Only show error and traceback if they exist and aren't 'nan'
                 if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
                     if pd.notna(row['error']) and str(row['error']).lower() != 'nan':
@@ -210,6 +237,7 @@ def main():
     with tab4:
         st.header("Raw Data")
         st.dataframe(filtered_data)
+
 
 if __name__ == "__main__":
     main()
