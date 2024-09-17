@@ -1,0 +1,119 @@
+import { useCurrentButtons, useThingInteraction } from "@/lib/useChoices.ts";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Heart, Swords, ArrowLeft, RefreshCw } from 'lucide-react';
+
+interface Skill {
+  uid: string;
+  display_name: string;
+  description: string;
+}
+
+interface Creature {
+  uid: string;
+  display_name: string;
+  description: string;
+}
+
+interface Player {
+  uid: string;
+  entities: {
+    active_creature: Creature;
+  };
+}
+
+interface GameUIData {
+  entities: {
+    player: Player;
+    bot: Player;
+  };
+}
+
+export function MainGameSceneView(props: { data: GameUIData }) {
+  const { currentButtonIds, emitButtonClick } = useCurrentButtons();
+  const { availableInteractiveThingIds, emitThingClick } = useThingInteraction();
+
+  const player = props.data.entities.player;
+  const opponent = props.data.entities.bot;
+
+  const renderCreature = (creature: Creature, isPlayer: boolean) => (
+    <div className="relative w-1/3 h-1/3">
+      <div className="absolute bottom-0 w-full h-1/4 bg-gray-300 rounded-full opacity-50"></div>
+      <div className={`absolute bottom-1/4 w-full h-2/3 ${isPlayer ? 'bg-blue-200' : 'bg-red-200'} rounded-lg`}>
+        {creature.display_name}
+      </div>
+    </div>
+  );
+
+  const renderCreatureStatus = (creature: Creature) => (
+    <Card className="p-2">
+      <h3 className="text-lg font-bold">{creature.display_name}</h3>
+      <div className="flex items-center">
+        <Heart className="mr-2" />
+        <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div
+            className="bg-green-600 h-2.5 rounded-full"
+            style={{ width: `${(creature.stats.hp / creature.stats.max_hp) * 100}%` }}
+          ></div>
+        </div>
+        <span className="ml-2">
+          {creature.stats.hp}/{creature.stats.max_hp}
+        </span>
+      </div>
+    </Card>
+  );
+
+  const renderBattlefield = () => (
+    <div className="cq-container h-2/3 relative">
+      <div className="absolute top-0 left-0 w-1/3">
+        {renderCreatureStatus(opponent.entities.active_creature)}
+      </div>
+      <div className="absolute top-0 right-0 w-1/3">
+        {renderCreature(opponent.entities.active_creature, false)}
+      </div>
+      <div className="absolute bottom-0 left-0 w-1/3">
+        {renderCreature(player.entities.active_creature, true)}
+      </div>
+      <div className="absolute bottom-0 right-0 w-1/3">
+        {renderCreatureStatus(player.entities.active_creature)}
+      </div>
+    </div>
+  );
+
+  const renderUserInterface = () => (
+    <div className="h-1/3 p-4">
+      <div className="grid grid-cols-2 gap-4">
+        {currentButtonIds.includes('attack') && (
+          <Button onClick={() => emitButtonClick('attack')}>
+            <Swords className="mr-2" /> Attack
+          </Button>
+        )}
+        {currentButtonIds.includes('swap') && (
+          <Button onClick={() => emitButtonClick('swap')}>
+            <RefreshCw className="mr-2" /> Swap
+          </Button>
+        )}
+        {currentButtonIds.includes('back') && (
+          <Button onClick={() => emitButtonClick('back')}>
+            <ArrowLeft className="mr-2" /> Back
+          </Button>
+        )}
+      </div>
+      <div className="mt-4">
+        {availableInteractiveThingIds.map((thingId) => (
+          <Button key={thingId} onClick={() => emitThingClick(thingId)}>
+            Select {thingId}
+          </Button>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="cq-container w-full h-full bg-gradient-to-b from-blue-100 to-green-100">
+      {renderBattlefield()}
+      {renderUserInterface()}
+    </div>
+  );
+}
