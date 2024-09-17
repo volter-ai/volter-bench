@@ -5,10 +5,8 @@ import plotly.graph_objects as go
 from datetime import datetime
 import plotly.express as px
 
-
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
-
 
 def load_data(directory):
     csv_files = [f for f in os.listdir(directory) if f.endswith('.csv')]
@@ -19,7 +17,6 @@ def load_data(directory):
         all_data.append(df)
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
-
 def calculate_success_rates(df):
     success_rates = df.groupby('agent_id').agg({
         'status': lambda x: (x == 'success').mean(),
@@ -27,14 +24,12 @@ def calculate_success_rates(df):
     success_rates.columns = ['agent_id', 'success_rate']
     return success_rates
 
-
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
         'status': lambda x: (x == 'success').mean(),
     }).reset_index()
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
-
 
 def create_heatmap(data, value_column, title):
     heatmap_pivot = data.pivot(index='ladder', columns='agent_id', values=value_column)
@@ -47,7 +42,6 @@ def create_heatmap(data, value_column, title):
                     zmin=0, zmax=1)
     fig.update_layout(title=title)
     return fig
-
 
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
@@ -71,58 +65,71 @@ def main():
         st.error(f"No CSV files found in the directory {data_directory}.")
         return
 
-    latest_file_timestamp = all_data['file_timestamp'].max()
-    latest_run_data = all_data[all_data['file_timestamp'] == latest_file_timestamp]
+    # Filters
+    st.sidebar.header("Filters")
+    selected_timestamps = st.sidebar.multiselect(
+        "Select Run Timestamps",
+        options=sorted(all_data['file_timestamp'].unique(), reverse=True),
+        default=sorted(all_data['file_timestamp'].unique(), reverse=True)
+    )
+    selected_ladders = st.sidebar.multiselect(
+        "Select Ladders",
+        options=sorted(all_data['ladder'].unique()),
+        default=sorted(all_data['ladder'].unique())
+    )
+    selected_agents = st.sidebar.multiselect(
+        "Select Agents",
+        options=sorted(all_data['agent_id'].unique()),
+        default=sorted(all_data['agent_id'].unique())
+    )
+
+    # Filter data based on selections
+    filtered_data = all_data[
+        (all_data['file_timestamp'].isin(selected_timestamps)) &
+        (all_data['ladder'].isin(selected_ladders)) &
+        (all_data['agent_id'].isin(selected_agents))
+        ]
+
+    if filtered_data.empty:
+        st.warning("No data available for the selected filters. Please adjust your selection.")
+        return
+
+    latest_file_timestamp = filtered_data['file_timestamp'].max()
+    latest_run_data = filtered_data[filtered_data['file_timestamp'] == latest_file_timestamp]
 
     latest_success_rates = calculate_success_rates(latest_run_data)
     latest_agent_ladder_success_rates = calculate_agent_ladder_success_rates(latest_run_data)
 
-    top_model = latest_success_rates.loc[latest_success_rates['success_rate'].idxmax()]
+    if latest_success_rates.empty:
+        st.warning("No success rate data available for the selected filters. Please adjust your selection.")
+    else:
+        top_model = latest_success_rates.loc[latest_success_rates['success_rate'].idxmax()]
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Top Model", top_model['agent_id'])
-    col2.metric("Success Rate", f"{top_model['success_rate']:.2%}")
-    col3.metric("Latest Run Timestamp", latest_file_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Top Model", top_model['agent_id'])
+        col2.metric("Success Rate", f"{top_model['success_rate']:.2%}")
+        col3.metric("Latest Run Timestamp", latest_file_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
 
     tab1, tab2, tab3, tab4 = st.tabs(["Leaderboard", "Agent Performance", "Run Details", "Raw Data"])
 
     with tab1:
         st.header("Leaderboard (Latest Run)")
 
-        st.dataframe(latest_success_rates.sort_values('success_rate', ascending=False).style.format({
-            'success_rate': '{:.2%}',
-        }))
+        if latest_success_rates.empty:
+            st.warning("No data available for the leaderboard. Please adjust your filter selection.")
+        else:
+            st.dataframe(latest_success_rates.sort_values('success_rate', ascending=False).style.format({
+                'success_rate': '{:.2%}',
+            }))
 
-        st.subheader("Agent-Ladder Success Rate Grid (Latest Run)")
-        heatmap_fig = create_heatmap(latest_agent_ladder_success_rates, 'success_rate',
-                                     "Success Rate Grid (Latest Run)")
-        st.plotly_chart(heatmap_fig)
+            st.subheader("Agent-Ladder Success Rate Grid (Latest Run)")
+            heatmap_fig = create_heatmap(latest_agent_ladder_success_rates, 'success_rate',
+                                         "Success Rate Grid (Latest Run)")
+            st.plotly_chart(heatmap_fig)
 
     with tab2:
         st.header("Agent Performance Over Time")
 
-        # Add filters
-        col1, col2 = st.columns(2)
-        with col1:
-            selected_timestamps = st.multiselect(
-                "Select Run Timestamps",
-                options=sorted(all_data['file_timestamp'].unique(), reverse=True),
-                default=sorted(all_data['file_timestamp'].unique(), reverse=True)
-            )
-        with col2:
-            selected_ladders = st.multiselect(
-                "Select Ladders",
-                options=sorted(all_data['ladder'].unique()),
-                default=sorted(all_data['ladder'].unique())
-            )
-
-        # Filter data based on selections
-        filtered_data = all_data[
-            (all_data['file_timestamp'].isin(selected_timestamps)) &
-            (all_data['ladder'].isin(selected_ladders))
-            ]
-
-        # Create the plot
         fig = go.Figure()
         for agent in filtered_data['agent_id'].unique():
             agent_data = filtered_data[filtered_data['agent_id'] == agent].groupby('file_timestamp').agg({
@@ -148,15 +155,20 @@ def main():
         success_rates = success_rates.sort_values(['Timestamp', 'Ladder', 'Agent'], ascending=[False, True, True])
         st.dataframe(success_rates.style.format({'Success Rate (%)': '{:.2f}'}))
 
+        # Add a summary table for overall performance
+        st.subheader("Overall Performance Summary")
+        overall_performance = filtered_data.groupby('agent_id').agg({
+            'status': lambda x: (x == 'success').mean() * 100  # Convert to percentage
+        }).reset_index()
+        overall_performance.columns = ['Agent', 'Overall Success Rate (%)']
+        overall_performance = overall_performance.sort_values('Overall Success Rate (%)', ascending=False)
+        st.dataframe(overall_performance.style.format({'Overall Success Rate (%)': '{:.2f}'}))
+
     with tab3:
         st.header("Run Details")
-        file_timestamps = sorted(all_data['file_timestamp'].unique(), reverse=True)
-        selected_timestamp = st.selectbox("Select a run (Timestamp)", file_timestamps)
 
-        run_data = all_data[all_data['file_timestamp'] == selected_timestamp]
-
-        st.subheader("Agent-Ladder Success Rates for Selected Run")
-        success_rates = calculate_agent_ladder_success_rates(run_data)
+        st.subheader("Agent-Ladder Success Rates for Selected Runs")
+        success_rates = calculate_agent_ladder_success_rates(filtered_data)
         st.dataframe(success_rates.style.format({
             'success_rate': '{:.2%}',
         }))
@@ -164,10 +176,10 @@ def main():
         st.subheader("Individual Run Details")
 
         # Add a sorting column
-        run_data['sort_key'] = (run_data['status'] == 'success').astype(int)
+        filtered_data['sort_key'] = (filtered_data['status'] == 'success').astype(int)
 
         # Sort the run data
-        sorted_run_data = run_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
+        sorted_run_data = filtered_data.sort_values(by=['sort_key', 'ladder', 'agent_id', 'run'])
 
         # Remove the sorting column
         sorted_run_data = sorted_run_data.drop('sort_key', axis=1)
@@ -175,7 +187,7 @@ def main():
         # Display runs
         for _, row in sorted_run_data.iterrows():
             status_icon = '❌' if row['status'] != 'success' else '✅'
-            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']})"
+            expander_title = f"{status_icon} {row['ladder']} - {row['agent_id']} (Trial {row['run']}) - {row['file_timestamp']}"
 
             with st.expander(expander_title):
                 st.write(f"Status: {row['status']}")
@@ -189,8 +201,7 @@ def main():
 
     with tab4:
         st.header("Raw Data")
-        st.dataframe(all_data)
-
+        st.dataframe(filtered_data)
 
 if __name__ == "__main__":
     main()
