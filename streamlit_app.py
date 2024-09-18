@@ -5,8 +5,10 @@ import plotly.graph_objects as go
 from datetime import datetime
 import plotly.express as px
 
+
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+
 
 def load_data(directory):
     csv_files = []
@@ -25,6 +27,7 @@ def load_data(directory):
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
+
 def calculate_success_rates(df):
     success_rates = df.groupby('agent_id').agg({
         'status': lambda x: (x == 'success').mean(),
@@ -32,12 +35,14 @@ def calculate_success_rates(df):
     success_rates.columns = ['agent_id', 'success_rate']
     return success_rates
 
+
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
         'status': lambda x: (x == 'success').mean(),
     }).reset_index()
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
+
 
 def create_heatmap(data, value_column, title):
     heatmap_pivot = data.pivot(index='ladder', columns='agent_id', values=value_column)
@@ -50,6 +55,7 @@ def create_heatmap(data, value_column, title):
                     zmin=0, zmax=1)
     fig.update_layout(title=title)
     return fig
+
 
 def get_github_url(row, data_directory):
     # Extract the subdirectory name from the data_directory path
@@ -69,6 +75,7 @@ def get_github_url(row, data_directory):
 
     return github_url
 
+
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
     st.title("Run Status Dashboard")
@@ -81,7 +88,8 @@ def main():
         return
 
     selected_subdir = st.sidebar.selectbox("Select Data Directory", subdirs,
-                                           index=subdirs.index('bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
+                                           index=subdirs.index(
+                                               'bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
     data_directory = os.path.join(base_dir, selected_subdir)
 
     st.sidebar.text(f"Current directory: {data_directory}")
@@ -91,43 +99,15 @@ def main():
         st.error(f"No CSV files found in the directory {data_directory}.")
         return
 
-    # Filters
-    st.sidebar.header("Filters")
-    selected_timestamps = st.sidebar.multiselect(
-        "Select Run Timestamps",
-        options=sorted(all_data['file_timestamp'].unique(), reverse=True),
-        default=sorted(all_data['file_timestamp'].unique(), reverse=True)
-    )
-    selected_ladders = st.sidebar.multiselect(
-        "Select Ladders",
-        options=sorted(all_data['ladder'].unique()),
-        default=sorted(all_data['ladder'].unique())
-    )
-    selected_agents = st.sidebar.multiselect(
-        "Select Agents",
-        options=sorted(all_data['agent_id'].unique()),
-        default=sorted(all_data['agent_id'].unique())
-    )
-
-    # Filter data based on selections
-    filtered_data = all_data[
-        (all_data['file_timestamp'].isin(selected_timestamps)) &
-        (all_data['ladder'].isin(selected_ladders)) &
-        (all_data['agent_id'].isin(selected_agents))
-        ]
-
-    if filtered_data.empty:
-        st.warning("No data available for the selected filters. Please adjust your selection.")
-        return
-
-    latest_file_timestamp = filtered_data['file_timestamp'].max()
-    latest_run_data = filtered_data[filtered_data['file_timestamp'] == latest_file_timestamp]
+    # Identify the latest run
+    latest_file_timestamp = all_data['file_timestamp'].max()
+    latest_run_data = all_data[all_data['file_timestamp'] == latest_file_timestamp]
 
     latest_success_rates = calculate_success_rates(latest_run_data)
     latest_agent_ladder_success_rates = calculate_agent_ladder_success_rates(latest_run_data)
 
     if latest_success_rates.empty:
-        st.warning("No success rate data available for the selected filters. Please adjust your selection.")
+        st.warning("No success rate data available.")
     else:
         top_model = latest_success_rates.loc[latest_success_rates['success_rate'].idxmax()]
 
@@ -142,7 +122,7 @@ def main():
         st.header("Leaderboard (Latest Run)")
 
         if latest_success_rates.empty:
-            st.warning("No data available for the leaderboard. Please adjust your filter selection.")
+            st.warning("No data available for the leaderboard.")
         else:
             st.dataframe(latest_success_rates.sort_values('success_rate', ascending=False).style.format({
                 'success_rate': '{:.2%}',
@@ -155,6 +135,31 @@ def main():
 
     with tab2:
         st.header("Agent Performance Over Time")
+
+        # Filters specific to this tab
+        st.subheader("Filters")
+        selected_ladders = st.multiselect(
+            "Select Ladders",
+            options=sorted(all_data['ladder'].unique()),
+            default=sorted(all_data['ladder'].unique()),
+            key='tab2_selected_ladders'  # Unique key for this widget
+        )
+        selected_agents = st.multiselect(
+            "Select Agents",
+            options=sorted(all_data['agent_id'].unique()),
+            default=sorted(all_data['agent_id'].unique()),
+            key='tab2_selected_agents'  # Unique key for this widget
+        )
+
+        # Filter data based on selections
+        filtered_data = all_data[
+            (all_data['ladder'].isin(selected_ladders)) &
+            (all_data['agent_id'].isin(selected_agents))
+            ]
+
+        if filtered_data.empty:
+            st.warning("No data available for the selected filters. Please adjust your selection.")
+            return
 
         fig = go.Figure()
         for agent in filtered_data['agent_id'].unique():
@@ -169,7 +174,8 @@ def main():
         fig.update_layout(title="Success Rate Over Time",
                           xaxis_title="Timestamp",
                           yaxis_title="Success Rate (%)",
-                          yaxis=dict(range=[0, 100]))  # Set y-axis range from 0 to 100
+                          yaxis=dict(range=[0, 100]),
+                          margin=dict(t=80))  # Add margin at the top
         st.plotly_chart(fig)
 
         # Add a data table showing the success rates
@@ -193,15 +199,15 @@ def main():
     with tab3:
         st.header("Run Details")
 
-        # Add back the ability to select a specific run
+        # Select a specific run
         selected_run = st.selectbox(
             "Select a run (Timestamp)",
-            options=sorted(filtered_data['file_timestamp'].unique(), reverse=True),
+            options=sorted(all_data['file_timestamp'].unique(), reverse=True),
             index=0
         )
 
         # Filter data for the selected run
-        run_data = filtered_data[filtered_data['file_timestamp'] == selected_run]
+        run_data = all_data[all_data['file_timestamp'] == selected_run]
 
         st.subheader("Agent-Ladder Success Rates for Selected Run")
         success_rates = calculate_agent_ladder_success_rates(run_data)
@@ -241,7 +247,33 @@ def main():
 
     with tab4:
         st.header("Raw Data")
-        st.dataframe(filtered_data)
+
+        st.subheader("Filters")
+        selected_ladders_raw = st.multiselect(
+            "Select Ladders",
+            options=sorted(all_data['ladder'].unique()),
+            default=sorted(all_data['ladder'].unique()),
+            key='tab4_selected_ladders'  # Unique key for this widget
+        )
+        selected_agents_raw = st.multiselect(
+            "Select Agents",
+            options=sorted(all_data['agent_id'].unique()),
+            default=sorted(all_data['agent_id'].unique()),
+            key='tab4_selected_agents'  # Unique key for this widget
+        )
+
+        # Filter data based on selections
+        raw_filtered_data = all_data[
+            (all_data['ladder'].isin(selected_ladders_raw)) &
+            (all_data['agent_id'].isin(selected_agents_raw))
+            ]
+
+        if raw_filtered_data.empty:
+            st.warning("No data available for the selected filters. Please adjust your selection.")
+            return
+
+        st.dataframe(raw_filtered_data)
+
 
 if __name__ == "__main__":
     main()
