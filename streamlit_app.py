@@ -76,6 +76,24 @@ def get_github_url(row, data_directory):
     return github_url
 
 
+def get_code_github_url(row, data_directory):
+    # Extract the subdirectory name from the data_directory path
+    subdirectory = os.path.basename(data_directory)
+
+    base_url = f"https://github.com/volter-ai/volter-bench/tree/main/data/{subdirectory}"
+
+    # Format the timestamp to match the GitHub folder structure
+    formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
+
+    # Include the run number in the ladder path
+    code_path = f"ladder/{row['ladder']}_{row['run']}/main_game"
+
+    # Construct the full GitHub URL
+    github_url = f"{base_url}/{formatted_timestamp}/{code_path}"
+
+    return github_url
+
+
 def main():
     st.set_page_config(page_title="Ladder and Agent Performance Dashboard", layout="wide")
     st.title("Run Status Dashboard")
@@ -87,9 +105,11 @@ def main():
         st.error(f"No subdirectories found in the '{base_dir}' folder.")
         return
 
-    selected_subdir = st.sidebar.selectbox("Select Data Directory", subdirs,
-                                           index=subdirs.index(
-                                               'bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0)
+    selected_subdir = st.sidebar.selectbox(
+        "Select Data Directory",
+        subdirs,
+        index=subdirs.index('bench_one_shot_core') if 'bench_one_shot_core' in subdirs else 0
+    )
     data_directory = os.path.join(base_dir, selected_subdir)
 
     st.sidebar.text(f"Current directory: {data_directory}")
@@ -129,8 +149,11 @@ def main():
             }))
 
             st.subheader("Agent-Ladder Success Rate Grid (Latest Run)")
-            heatmap_fig = create_heatmap(latest_agent_ladder_success_rates, 'success_rate',
-                                         "Success Rate Grid (Latest Run)")
+            heatmap_fig = create_heatmap(
+                latest_agent_ladder_success_rates,
+                'success_rate',
+                "Success Rate Grid (Latest Run)"
+            )
             st.plotly_chart(heatmap_fig)
 
     with tab2:
@@ -166,16 +189,20 @@ def main():
             agent_data = filtered_data[filtered_data['agent_id'] == agent].groupby('file_timestamp').agg({
                 'status': lambda x: (x == 'success').mean() * 100  # Convert to percentage
             }).reset_index()
-            fig.add_trace(go.Scatter(x=agent_data['file_timestamp'],
-                                     y=agent_data['status'],
-                                     mode='lines+markers',
-                                     name=agent))
+            fig.add_trace(go.Scatter(
+                x=agent_data['file_timestamp'],
+                y=agent_data['status'],
+                mode='lines+markers',
+                name=agent
+            ))
 
-        fig.update_layout(title="Success Rate Over Time",
-                          xaxis_title="Timestamp",
-                          yaxis_title="Success Rate (%)",
-                          yaxis=dict(range=[0, 100]),
-                          margin=dict(t=80))  # Add margin at the top
+        fig.update_layout(
+            title="Success Rate Over Time",
+            xaxis_title="Timestamp",
+            yaxis_title="Success Rate (%)",
+            yaxis=dict(range=[0, 100]),
+            margin=dict(t=80)  # Add margin at the top
+        )
         st.plotly_chart(fig)
 
         # Add a data table showing the success rates
@@ -234,9 +261,12 @@ def main():
             with st.expander(expander_title):
                 st.write(f"Status: {row['status']}")
 
-                # Generate and display GitHub link
+                # Generate and display GitHub links
                 github_url = get_github_url(row, data_directory)
                 st.markdown(f"[View logs on GitHub]({github_url})")
+
+                github_code_url = get_code_github_url(row, data_directory)
+                st.markdown(f"[View code on GitHub]({github_code_url})")
 
                 # Only show error and traceback if they exist and aren't 'nan'
                 if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
