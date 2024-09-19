@@ -79,18 +79,13 @@ def get_github_url(row, data_directory):
 def get_code_github_url(row, data_directory):
     # Extract the subdirectory name from the data_directory path
     subdirectory = os.path.basename(data_directory)
-
     base_url = f"https://github.com/volter-ai/volter-bench/tree/main/data/{subdirectory}"
-
     # Format the timestamp to match the GitHub folder structure
     formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
-
     # Include the run number in the ladder path
     code_path = f"ladder/{row['ladder']}_{row['run']}/main_game"
-
     # Construct the full GitHub URL
     github_url = f"{base_url}/{formatted_timestamp}/{code_path}"
-
     return github_url
 
 
@@ -265,8 +260,13 @@ def main():
                 github_url = get_github_url(row, data_directory)
                 st.markdown(f"[View logs on GitHub]({github_url})")
 
+                # Add the "View game code on GitHub" link
                 github_code_url = get_code_github_url(row, data_directory)
-                st.markdown(f"[View code on GitHub]({github_code_url})")
+                st.markdown(f"[View game code on GitHub]({github_code_url})")
+
+                # Add the "View agent code on GitHub" link using 'commit_url' from the dataframe
+                if 'commit_url' in row and pd.notna(row['commit_url']):
+                    st.markdown(f"[View prompt and agent code on GitHub]({row['commit_url']})")
 
                 # Only show error and traceback if they exist and aren't 'nan'
                 if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
