@@ -1,0 +1,219 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url
+2024-09-19 14:22:45,9d483d8b-357c-4e52-a5de-d3ef8fc9df8c,QATestWriter2,rps,1,success,,,['new_prompt_logs/1726770145_894373_QATestWriter2'],ladder_view/rps_1/main_game,none
+2024-09-19 14:23:58,7aae346d-1e54-47b6-afd7-689f3d449aa9,QATestWriter2,creature_battle_01,1,failure,"After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 3 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 33%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_normal_battle_flow PASSED [ 66%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ TestMainGameScene.test_simultaneous_faint ___________________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_simultaneous_faint(self, scene):
+        # Set both creatures' HP to 3
+        scene.player_creature.hp = 3
+        scene.foe_creature.hp = 3
+    
+        runner = ThreadedSceneRunner()
+        runner.start_game(scene)
+    
+        # Player's turn
+        choices = runner.dequeue_wait_for_choice(scene.player)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Foe's turn
+        choices = runner.dequeue_wait_for_choice(scene.foe)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Wait for the resolution phase to complete
+        assert runner.dequeue_transition_to_scene() == ""MainMenuScene""
+    
+        # Check that both creatures' HP reached 0
+>       assert scene.player_creature.hp == 0, ""Player's creature HP should be 0""
+E       AssertionError: Player's creature HP should be 0
+E       assert 3 == 0
+E        +  where 3 = <main_game.models.Creature object at 0x[REDACTED]>.hp
+E        +    where <main_game.models.Creature object at 0x[REDACTED]> = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>.player_creature
+
+main_game/tests/test_main_game_scene.py:100: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Battle start!
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool uses Tackle!
+Bubwool takes 3 damage!
+Default Player's Bubwool fainted! You win!
+Default Player's Bubwool fainted! You win!
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+","Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 61, in execute
+    run_pytest(f""main_game/tests/test_{self.scene_name}.py"", project_root=self.sdk.project_directory, timeout_seconds=5)
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-std-agents/agent_lib/random_run_utils.py"", line 119, in run_pytest
+    raise AssertionError(f""Pytest failed with exit code {exit_code}. Output:\n{output}"")
+AssertionError: Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 3 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 33%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_normal_battle_flow PASSED [ 66%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ TestMainGameScene.test_simultaneous_faint ___________________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_simultaneous_faint(self, scene):
+        # Set both creatures' HP to 3
+        scene.player_creature.hp = 3
+        scene.foe_creature.hp = 3
+    
+        runner = ThreadedSceneRunner()
+        runner.start_game(scene)
+    
+        # Player's turn
+        choices = runner.dequeue_wait_for_choice(scene.player)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Foe's turn
+        choices = runner.dequeue_wait_for_choice(scene.foe)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Wait for the resolution phase to complete
+        assert runner.dequeue_transition_to_scene() == ""MainMenuScene""
+    
+        # Check that both creatures' HP reached 0
+>       assert scene.player_creature.hp == 0, ""Player's creature HP should be 0""
+E       AssertionError: Player's creature HP should be 0
+E       assert 3 == 0
+E        +  where 3 = <main_game.models.Creature object at 0x[REDACTED]>.hp
+E        +    where <main_game.models.Creature object at 0x[REDACTED]> = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>.player_creature
+
+main_game/tests/test_main_game_scene.py:100: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Battle start!
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool uses Tackle!
+Bubwool takes 3 damage!
+Default Player's Bubwool fainted! You win!
+Default Player's Bubwool fainted! You win!
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 86, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 66, in execute
+    raise FixableException(f""After {self.max_number_of_runs} attempts to debug, could not pytests. Still have error {e}"")
+common.exceptions.FixableException: After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 3 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 33%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_normal_battle_flow PASSED [ 66%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ TestMainGameScene.test_simultaneous_faint ___________________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_simultaneous_faint(self, scene):
+        # Set both creatures' HP to 3
+        scene.player_creature.hp = 3
+        scene.foe_creature.hp = 3
+    
+        runner = ThreadedSceneRunner()
+        runner.start_game(scene)
+    
+        # Player's turn
+        choices = runner.dequeue_wait_for_choice(scene.player)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Foe's turn
+        choices = runner.dequeue_wait_for_choice(scene.foe)
+        tackle = find_select_thing(choices, ""tackle"")
+        runner.make_choice(tackle)
+    
+        # Wait for the resolution phase to complete
+        assert runner.dequeue_transition_to_scene() == ""MainMenuScene""
+    
+        # Check that both creatures' HP reached 0
+>       assert scene.player_creature.hp == 0, ""Player's creature HP should be 0""
+E       AssertionError: Player's creature HP should be 0
+E       assert 3 == 0
+E        +  where 3 = <main_game.models.Creature object at 0x[REDACTED]>.hp
+E        +    where <main_game.models.Creature object at 0x[REDACTED]> = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>.player_creature
+
+main_game/tests/test_main_game_scene.py:100: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Battle start!
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle))])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool uses Tackle!
+Bubwool takes 3 damage!
+Default Player's Bubwool fainted! You win!
+Default Player's Bubwool fainted! You win!
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_simultaneous_faint
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+",['new_prompt_logs/1726770145_775101_QATestWriter2'],ladder_view/creature_battle_01_1/main_game,none
