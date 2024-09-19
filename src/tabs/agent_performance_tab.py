@@ -56,7 +56,6 @@ def display_agent_performance_tab(all_data):
     st.plotly_chart(fig)
 
     ## Pytest Run Index Over Time Plot ##
-    st.subheader("Pytest Run Index Over Time")
     fig_pytest = go.Figure()
     for agent in filtered_data['agent_id'].unique():
         agent_data = filtered_data[filtered_data['agent_id'] == agent]
@@ -73,7 +72,7 @@ def display_agent_performance_tab(all_data):
             ))
     if fig_pytest.data:
         fig_pytest.update_layout(
-            title="Pytest Run Index Over Time",
+            title="Average Pytest Run Index Over Time",
             xaxis_title="Timestamp",
             yaxis_title="Pytest Run Index",
             margin=dict(t=80)
@@ -83,7 +82,6 @@ def display_agent_performance_tab(all_data):
         st.write("No Pytest Run Index data available for the selected filters.")
 
     ## QA Run Index Over Time Plot ##
-    st.subheader("QA Run Index Over Time")
     fig_qa = go.Figure()
     for agent in filtered_data['agent_id'].unique():
         agent_data = filtered_data[filtered_data['agent_id'] == agent]
@@ -100,7 +98,7 @@ def display_agent_performance_tab(all_data):
             ))
     if fig_qa.data:
         fig_qa.update_layout(
-            title="QA Run Index Over Time",
+            title="Average QA Run Index Over Time",
             xaxis_title="Timestamp",
             yaxis_title="QA Run Index",
             margin=dict(t=80)
@@ -131,7 +129,8 @@ def display_agent_performance_tab(all_data):
         'pytest_run_idx': 'mean',
         'qa_run_idx': 'mean'
     }).reset_index()
-    overall_performance.columns = ['Agent', 'Overall Success Rate (%)', 'Average Pytest Run Index', 'Average QA Run Index']
+    overall_performance.columns = ['Agent', 'Overall Success Rate (%)', 'Average Pytest Run Index',
+                                   'Average QA Run Index']
     overall_performance = overall_performance.sort_values('Overall Success Rate (%)', ascending=False)
     st.dataframe(overall_performance.style.format({
         'Overall Success Rate (%)': '{:.2f}',
