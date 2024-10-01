@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 
 DATA_DIR = Path("data")
-THRESHOLD = 0.95
+THRESHOLD = 0.8
 
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
