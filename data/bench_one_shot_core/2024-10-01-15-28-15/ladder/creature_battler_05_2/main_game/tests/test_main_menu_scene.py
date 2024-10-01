@@ -1,0 +1,44 @@
+import pytest
+from mini_game_engine.engine.lib import HumanListener, AbstractApp
+from main_game.scenes.main_menu_scene import MainMenuScene
+from main_game.scenes.main_game_scene import MainGameScene
+from main_game.models import Player
+
+
+class TestApp(AbstractApp):
+    def __init__(self):
+        super().__init__()
+        self.register_scene("MainMenuScene", MainMenuScene)
+        self.register_scene("MainGameScene", MainGameScene)
+
+    def create_player(self, player_id: str):
+        player = Player.from_prototype_id(prototype_id="default_player")
+        player.uid = player_id
+        player.set_listener(HumanListener())
+        return player
+
+    def create_bot(self, prototype_id: str):
+        return self.create_player(prototype_id)  # For simplicity, create a player instead of a bot
+
+    def transition_to_scene(self, scene_id: str, **kwargs):
+        scene_factory = self.scene_registry[scene_id]
+        scene = scene_factory(app=self, **kwargs)
+        return scene
+
+@pytest.fixture
+def app():
+    return TestApp()
+
+@pytest.fixture
+def player(app):
+    return app.create_player("test_player")
+
+def test_main_menu_scene(app, player):
+    HumanListener.random_mode = True
+    for _ in range(10):
+        scene = MainMenuScene(app, player)
+        try:
+            scene.run()
+        except AbstractApp._QuitWholeGame:
+            pass  # Expected exception, test passed
+    HumanListener.random_mode = False
