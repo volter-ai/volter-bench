@@ -119,7 +119,10 @@ if __name__ == "__main__":
         latest_results = load_latest_results()
         metrics = calculate_metrics(latest_results)
         slack_payload = generate_slack_payload(metrics)
-        print(f"::set-output name=slack_payload::{slack_payload}")
+        
+        # Write the output to GITHUB_OUTPUT
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write(f"slack_payload={slack_payload}\n")
     except Exception as e:
         error_payload = json.dumps({
             "text": f"Error in update_metrics.py: {str(e)}",
@@ -128,4 +131,5 @@ if __name__ == "__main__":
                 "text": {"type": "mrkdwn", "text": f"Error in update_metrics.py: {str(e)}"}
             }]
         })
-        print(f"::set-output name=slack_payload::{error_payload}")
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write(f"slack_payload={error_payload}\n")
