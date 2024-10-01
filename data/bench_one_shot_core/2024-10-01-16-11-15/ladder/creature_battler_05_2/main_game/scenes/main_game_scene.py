@@ -1,0 +1,182 @@
+from mini_game_engine.engine.lib import AbstractGameScene, Button, SelectThing
+import random
+
+
+class MainGameScene(AbstractGameScene):
+    def __init__(self, app, player):
+        super().__init__(app, player)
+        self.opponent = app.create_bot("basic_opponent")
+        self.player.active_creature = self.player.creatures[0]
+        self.opponent.active_creature = self.opponent.creatures[0]
+        self.player_action = None
+        self.opponent_action = None
+
+    def __str__(self):
+        return f"""===Battle===
+{self.player.display_name}'s {self.player.active_creature.display_name}: HP {self.player.active_creature.hp}/{self.player.active_creature.max_hp}
+{self.opponent.display_name}'s {self.opponent.active_creature.display_name}: HP {self.opponent.active_creature.hp}/{self.opponent.active_creature.max_hp}
+
+> Attack
+> Swap
+"""
+
+    def run(self):
+        while True:
+            self.player_turn()
+            if self.check_battle_end():
+                break
+            self.opponent_turn()
+            if self.check_battle_end():
+                break
+            self.resolution_phase()
+            if self.check_battle_end():
+                break
+
+    def player_turn(self):
+        while True:
+            attack_button = Button("Attack")
+            swap_button = Button("Swap")
+            choices = [attack_button, swap_button]
+            choice = self._wait_for_choice(self.player, choices)
+
+            if attack_button == choice:
+                skill = self.choose_skill(self.player)
+                if skill:
+                    self.player_action = ("attack", skill)
+                    break
+            elif swap_button == choice:
+                creature = self.choose_creature(self.player)
+                if creature:
+                    self.player_action = ("swap", creature)
+                    break
+
+    def opponent_turn(self):
+        while True:
+            attack_button = Button("Attack")
+            swap_button = Button("Swap")
+            choices = [attack_button, swap_button]
+            choice = self._wait_for_choice(self.opponent, choices)
+
+            if attack_button == choice:
+                skill = self.choose_skill(self.opponent)
+                if skill:
+                    self.opponent_action = ("attack", skill)
+                    break
+            elif swap_button == choice:
+                creature = self.choose_creature(self.opponent)
+                if creature:
+                    self.opponent_action = ("swap", creature)
+                    break
+
+    def resolution_phase(self):
+        first, second = self.determine_order()
+        self.resolve_action(*first)
+        self.resolve_action(*second)
+
+    def determine_order(self):
+        if self.player_action[0] == "swap" and self.opponent_action[0] != "swap":
+            return (self.player, self.player_action), (self.opponent, self.opponent_action)
+        elif self.opponent_action[0] == "swap" and self.player_action[0] != "swap":
+            return (self.opponent, self.opponent_action), (self.player, self.player_action)
+        elif self.player.active_creature.speed > self.opponent.active_creature.speed:
+            return (self.player, self.player_action), (self.opponent, self.opponent_action)
+        elif self.opponent.active_creature.speed > self.player.active_creature.speed:
+            return (self.opponent, self.opponent_action), (self.player, self.player_action)
+        else:
+            # Equal speed, resolve randomly
+            if random.choice([True, False]):
+                return (self.player, self.player_action), (self.opponent, self.opponent_action)
+            else:
+                return (self.opponent, self.opponent_action), (self.player, self.player_action)
+
+    def resolve_action(self, actor, action):
+        action_type, action_data = action
+        if action_type == "attack":
+            self.resolve_attack(actor, action_data)
+        elif action_type == "swap":
+            self.resolve_swap(actor, action_data)
+
+    def resolve_attack(self, attacker, skill):
+        defender = self.player if attacker == self.opponent else self.opponent
+        damage = self.calculate_damage(attacker.active_creature, defender.active_creature, skill)
+        defender.active_creature.hp = max(0, defender.active_creature.hp - damage)
+        self._show_text(attacker, f"{attacker.active_creature.display_name} used {skill.display_name}!")
+        self._show_text(defender, f"{defender.active_creature.display_name} took {damage} damage!")
+
+    def resolve_swap(self, player, new_creature):
+        player.active_creature = new_creature
+        self._show_text(player, f"{player.display_name} swapped to {new_creature.display_name}!")
+
+    def calculate_damage(self, attacker, defender, skill):
+        if skill.is_physical:
+            raw_damage = float(attacker.attack) + float(skill.base_damage) - float(defender.defense)
+        else:
+            raw_damage = (float(attacker.sp_attack) / float(defender.sp_defense)) * float(skill.base_damage)
+        
+        type_factor = self.get_type_factor(skill.skill_type, defender.creature_type)
+        final_damage = raw_damage * type_factor
+        return max(1, int(final_damage))  # Ensure at least 1 damage is dealt
+
+    def get_type_factor(self, skill_type, defender_type):
+        effectiveness = {
+            "normal": {"normal": 1.0, "fire": 1.0, "water": 1.0, "leaf": 1.0},
+            "fire": {"normal": 1.0, "fire": 0.5, "water": 0.5, "leaf": 2.0},
+            "water": {"normal": 1.0, "fire": 2.0, "water": 0.5, "leaf": 0.5},
+            "leaf": {"normal": 1.0, "fire": 0.5, "water": 2.0, "leaf": 0.5}
+        }
+        return effectiveness.get(skill_type, {}).get(defender_type, 1.0)
+
+    def check_battle_end(self):
+        if not self.has_available_creatures(self.player):
+            self._show_text(self.player, "You lost the battle!")
+            self.reset_creature_state()
+            self._transition_to_scene("MainMenuScene")
+            return True
+        elif not self.has_available_creatures(self.opponent):
+            self._show_text(self.player, "You won the battle!")
+            self.reset_creature_state()
+            self._transition_to_scene("MainMenuScene")
+            return True
+        
+        # Check for simultaneous knockouts
+        if self.player.active_creature.hp == 0 and self.opponent.active_creature.hp == 0:
+            self._show_text(self.player, "Both active creatures were knocked out!")
+            self.force_swap(self.player)
+            self.force_swap(self.opponent)
+        elif self.player.active_creature.hp == 0:
+            self.force_swap(self.player)
+        elif self.opponent.active_creature.hp == 0:
+            self.force_swap(self.opponent)
+        
+        return False
+
+    def has_available_creatures(self, player):
+        return any(creature.hp > 0 for creature in player.creatures)
+
+    def force_swap(self, player):
+        available_creatures = [c for c in player.creatures if c.hp > 0 and c != player.active_creature]
+        if available_creatures:
+            new_creature = self.choose_creature(player)
+            if new_creature:
+                player.active_creature = new_creature
+                self._show_text(player, f"{player.display_name} swapped to {new_creature.display_name}!")
+
+    def choose_skill(self, player):
+        choices = [SelectThing(skill) for skill in player.active_creature.skills]
+        choices.append(Button("Back"))
+        choice = self._wait_for_choice(player, choices)
+        if isinstance(choice, SelectThing):
+            return choice.thing
+        return None
+
+    def choose_creature(self, player):
+        choices = [SelectThing(creature) for creature in player.creatures if creature != player.active_creature and creature.hp > 0]
+        choices.append(Button("Back"))
+        choice = self._wait_for_choice(player, choices)
+        if isinstance(choice, SelectThing):
+            return choice.thing
+        return None
+
+    def reset_creature_state(self):
+        for creature in self.player.creatures + self.opponent.creatures:
+            creature.hp = creature.max_hp
