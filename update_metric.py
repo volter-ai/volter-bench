@@ -2,6 +2,7 @@ import os
 import json
 import pandas as pd
 from pathlib import Path
+from fractions import Fraction
 
 DATA_DIR = Path("data")
 THRESHOLD = 0.8  # 80%
@@ -75,11 +76,16 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
     # Pretext for the attachment
     text = "Latest Benchmark Results"
     
+    # Convert overall success rate to a fraction and percentage
+    fraction = Fraction(metrics['overall_success_rate']).limit_denominator(8)
+    fraction_str = f"{fraction.numerator}/{fraction.denominator}"
+    percentage_str = f"{metrics['overall_success_rate']:.2%}"
+    
     # Construct fields for the attachment
     fields = [
         {
             "title": "Overall Success Rate",
-            "value": f"{metrics['overall_success_rate']:.2%}",
+            "value": f"{percentage_str} ({fraction_str})",
             "short": True
         },
         {
