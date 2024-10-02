@@ -72,11 +72,8 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
     # Determine the color based on the success rate
     color = "danger" if metrics['overall_success_rate'] < THRESHOLD else "good"
     
-    # Text for fallback
-    text = f"GitHub Action build result: {job_status}\n{build_url if build_url else ''}"
-    
     # Pretext for the attachment
-    pretext = "Latest Benchmark Results"
+    text = "Latest Benchmark Results"
     
     # Construct fields for the attachment
     fields = [
@@ -126,7 +123,6 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
         "text": text,
         "attachments": [
             {
-                "pretext": pretext,
                 "color": color,
                 "fields": fields
             }
