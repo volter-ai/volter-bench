@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 
 DATA_DIR = Path("data")
-THRESHOLD = 0.8
+THRESHOLD = 0.8  # 80%
 
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
@@ -68,68 +68,95 @@ def calculate_metrics(df):
         'agent_ladder_success_rates': agent_ladder_success_rates
     }
 
-def generate_slack_payload(metrics):
+def generate_slack_payload(metrics, job_status=None, build_url=None):
     color = "danger" if metrics['overall_success_rate'] < THRESHOLD else "good"
-    text = f"<!here> Success rate is below {THRESHOLD:.0%}!" if metrics['overall_success_rate'] < THRESHOLD else "Latest Benchmark Results"
+    text = "Success rate is below {0:.0%}!".format(THRESHOLD) if metrics['overall_success_rate'] < THRESHOLD else "Latest Benchmark Results"
     
-    blocks = [
+    attachments = [
         {
-            "type": "header",
-            "text": {
-                "type": "plain_text",
-                "text": "Latest Benchmark Results"
-            }
-        },
-        {
-            "type": "section",
+            "pretext": "Latest Benchmark Results",
+            "color": color,
             "fields": [
-                {"type": "mrkdwn", "text": f"*Overall Success Rate:*\n{metrics['overall_success_rate']:.2%}"},
-                {"type": "mrkdwn", "text": f"*Top Model:*\n{metrics['top_model']}"},
-                {"type": "mrkdwn", "text": f"*Latest Run Timestamp:*\n{metrics['latest_timestamp']}"}
+                {
+                    "title": "Overall Success Rate",
+                    "value": "{0:.2%}".format(metrics['overall_success_rate']),
+                    "short": True
+                },
+                {
+                    "title": "Top Model",
+                    "value": metrics['top_model'],
+                    "short": True
+                },
+                {
+                    "title": "Latest Run Timestamp",
+                    "value": metrics['latest_timestamp'],
+                    "short": False
+                }
             ]
-        },
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "*Agent Ladder Success Rates:*"
-            }
         }
     ]
     
+    # Add Agent Ladder Success Rates
     for _, row in metrics['agent_ladder_success_rates'].iterrows():
-        blocks.append({
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": f"*{row['agent_id']} - {row['ladder']}:* {row['success_rate']:.2%}"
-            }
+        attachments[0]['fields'].append({
+            "title": f"{row['agent_id']} - {row['ladder']}",
+            "value": "{0:.2%}".format(row['success_rate']),
+            "short": True
         })
+    
+    # Append additional information if available
+    if job_status or build_url:
+        additional_fields = []
+        if job_status:
+            additional_fields.append({
+                "title": "Job Status",
+                "value": job_status.capitalize(),
+                "short": True
+            })
+        if build_url:
+            additional_fields.append({
+                "title": "Build URL",
+                "value": f"<{build_url}|View Build>",
+                "short": False
+            })
+        attachments[0]['fields'].extend(additional_fields)
     
     payload = {
         "text": text,
-        "blocks": blocks,
-        "attachments": [{"color": color}]
+        "attachments": attachments
     }
     
-    return json.dumps(payload)
+    return payload
 
 if __name__ == "__main__":
     try:
         latest_results = load_latest_results()
         metrics = calculate_metrics(latest_results)
-        slack_payload = generate_slack_payload(metrics)
+        
+        # Capture GitHub Actions environment variables for job status and build URL
+        job_status = os.getenv('JOB_STATUS', 'success')  # Default to 'success' if not set
+        build_url = os.getenv('BUILD_URL', '')
+        
+        slack_payload = generate_slack_payload(metrics, job_status, build_url)
         
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            f.write(f"slack_payload={slack_payload}\n")
+            f.write(f"slack_payload={json.dumps(slack_payload)}\n")
     except Exception as e:
-        error_payload = json.dumps({
+        error_payload = {
             "text": f"Error in update_metrics.py: {str(e)}",
-            "blocks": [{
-                "type": "section",
-                "text": {"type": "mrkdwn", "text": f"Error in update_metrics.py: {str(e)}"}
-            }]
-        })
+            "attachments": [
+                {
+                    "color": "danger",
+                    "fields": [
+                        {
+                            "title": "Error",
+                            "value": f"```\n{str(e)}\n```",
+                            "short": False
+                        }
+                    ]
+                }
+            ]
+        }
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            f.write(f"slack_payload={error_payload}\n")
+            f.write(f"slack_payload={json.dumps(error_payload)}\n")
