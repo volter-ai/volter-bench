@@ -149,7 +149,7 @@ if __name__ == "__main__":
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             # Use json.dumps to serialize the payload
-            f.write(f"{json.dumps(slack_payload)}")
+            f.write(f"slack_payload={json.dumps(slack_payload)}\n")
     except Exception as e:
         error_payload = {
             "text": f"Error in update_metrics.py: {str(e)}",
