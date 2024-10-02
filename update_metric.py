@@ -69,61 +69,68 @@ def calculate_metrics(df):
     }
 
 def generate_slack_payload(metrics, job_status=None, build_url=None):
+    # Determine the color based on the success rate
     color = "danger" if metrics['overall_success_rate'] < THRESHOLD else "good"
-    text = "Success rate is below {0:.0%}!".format(THRESHOLD) if metrics['overall_success_rate'] < THRESHOLD else "Latest Benchmark Results"
     
-    attachments = [
+    # Text for fallback
+    text = f"GitHub Action build result: {job_status}\n{build_url if build_url else ''}"
+    
+    # Pretext for the attachment
+    pretext = "Latest Benchmark Results"
+    
+    # Construct fields for the attachment
+    fields = [
         {
-            "pretext": "Latest Benchmark Results",
-            "color": color,
-            "fields": [
-                {
-                    "title": "Overall Success Rate",
-                    "value": "{0:.2%}".format(metrics['overall_success_rate']),
-                    "short": True
-                },
-                {
-                    "title": "Top Model",
-                    "value": metrics['top_model'],
-                    "short": True
-                },
-                {
-                    "title": "Latest Run Timestamp",
-                    "value": metrics['latest_timestamp'],
-                    "short": False
-                }
-            ]
+            "title": "Overall Success Rate",
+            "value": f"{metrics['overall_success_rate']:.2%}",
+            "short": True
+        },
+        {
+            "title": "Top Model",
+            "value": metrics['top_model'],
+            "short": True
+        },
+        {
+            "title": "Latest Run Timestamp",
+            "value": metrics['latest_timestamp'],
+            "short": False
         }
     ]
     
     # Add Agent Ladder Success Rates
     for _, row in metrics['agent_ladder_success_rates'].iterrows():
-        attachments[0]['fields'].append({
+        fields.append({
             "title": f"{row['agent_id']} - {row['ladder']}",
-            "value": "{0:.2%}".format(row['success_rate']),
+            "value": f"{row['success_rate']:.2%}",
             "short": True
         })
     
     # Append additional information if available
-    if job_status or build_url:
-        additional_fields = []
-        if job_status:
-            additional_fields.append({
-                "title": "Job Status",
-                "value": job_status.capitalize(),
-                "short": True
-            })
-        if build_url:
-            additional_fields.append({
-                "title": "Build URL",
-                "value": f"<{build_url}|View Build>",
-                "short": False
-            })
-        attachments[0]['fields'].extend(additional_fields)
+    additional_fields = []
+    if job_status:
+        additional_fields.append({
+            "title": "Job Status",
+            "value": job_status.capitalize(),
+            "short": True
+        })
+    if build_url:
+        additional_fields.append({
+            "title": "Build URL",
+            "value": f"<{build_url}|View Build>",
+            "short": False
+        })
+    fields.extend(additional_fields)
     
+    # Construct the payload
     payload = {
         "text": text,
-        "attachments": attachments
+        "attachments": [
+            {
+                "pretext": pretext,
+                "color": color,
+                "fields": fields
+            }
+        ]
     }
     
     return payload
@@ -141,6 +148,7 @@ if __name__ == "__main__":
         
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            # Use json.dumps to serialize the payload
             f.write(f"slack_payload={json.dumps(slack_payload)}\n")
     except Exception as e:
         error_payload = {
