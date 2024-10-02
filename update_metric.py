@@ -140,11 +140,7 @@ if __name__ == "__main__":
         latest_results = load_latest_results()
         metrics = calculate_metrics(latest_results)
         
-        # Capture GitHub Actions environment variables for job status and build URL
-        job_status = os.getenv('JOB_STATUS', 'success')  # Default to 'success' if not set
-        build_url = os.getenv('BUILD_URL', '')
-        
-        slack_payload = generate_slack_payload(metrics, job_status, build_url)
+        slack_payload = generate_slack_payload(metrics)
         
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
