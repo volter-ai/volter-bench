@@ -21,12 +21,11 @@ def load_data(data_directory):
                 all_data.append(df)
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
-def calculate_success_rates(df):
-    success_rates = df.groupby('agent_id').agg({
-        'status': lambda x: (x == 'success').mean(),
-    }).reset_index()
-    success_rates.columns = ['agent_id', 'success_rate']
-    return success_rates
+def calculate_overall_success_rate(df):
+    total_runs = len(df)
+    total_successes = (df['status'] == 'success').sum()
+    success_rate = total_successes / total_runs if total_runs > 0 else 0
+    return success_rate, total_successes, total_runs
 
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
@@ -55,15 +54,23 @@ def load_latest_results():
     return latest_run_data
 
 def calculate_metrics(df):
-    overall_success_rates = calculate_success_rates(df)
-    overall_success_rate = overall_success_rates['success_rate'].mean()
-    top_model = overall_success_rates.loc[overall_success_rates['success_rate'].idxmax(), 'agent_id']
+    overall_success_rate, total_successes, total_runs = calculate_overall_success_rate(df)
+    
+    # Identify the top model based on total successes
+    successes_per_agent = df[df['status'] == 'success'].groupby('agent_id').size()
+    if not successes_per_agent.empty:
+        top_model = successes_per_agent.idxmax()
+    else:
+        top_model = "N/A"
+    
     latest_timestamp = df['file_timestamp'].iloc[0]
     
     agent_ladder_success_rates = calculate_agent_ladder_success_rates(df)
     
     return {
         'overall_success_rate': overall_success_rate,
+        'total_successes': total_successes,
+        'total_runs': total_runs,
         'top_model': top_model,
         'latest_timestamp': latest_timestamp,
         'agent_ladder_success_rates': agent_ladder_success_rates
@@ -77,7 +84,7 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
     text = "Latest Benchmark Results"
     
     # Convert overall success rate to a fraction and percentage
-    fraction = Fraction(metrics['overall_success_rate']).limit_denominator(8)
+    fraction = Fraction(metrics['total_successes'], metrics['total_runs']).limit_denominator()
     fraction_str = f"{fraction.numerator}/{fraction.denominator}"
     percentage_str = f"{metrics['overall_success_rate']:.2%}"
     
@@ -139,15 +146,23 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
 
 if __name__ == "__main__":
     try:
+        # Retrieve job status and build URL from environment variables
+        job_status = os.getenv('JOB_STATUS')
+        build_url = os.getenv('BUILD_URL')
+        
         latest_results = load_latest_results()
         metrics = calculate_metrics(latest_results)
         
-        slack_payload = generate_slack_payload(metrics)
+        slack_payload = generate_slack_payload(metrics, job_status=job_status, build_url=build_url)
         
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             # Use json.dumps to serialize the payload
             f.write(f"slack_payload={json.dumps(slack_payload)}\n")
+        
+        # Optional: Print metrics for debugging
+        print("Metrics Calculated:")
+        print(json.dumps(metrics, indent=2))
     except Exception as e:
         error_payload = {
             "text": f"Error in update_metrics.py: {str(e)}",
