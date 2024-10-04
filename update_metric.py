@@ -84,8 +84,9 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
     text = "Latest Benchmark Results"
     
     # Convert overall success rate to a fraction and percentage
-    fraction = Fraction(metrics['total_successes'], metrics['total_runs']).limit_denominator()
-    fraction_str = f"{fraction.numerator}/{fraction.denominator}"
+    numerator = metrics['total_successes']
+    denominator = metrics['total_runs']
+    fraction_str = f"{numerator}/{denominator}"
     percentage_str = f"{metrics['overall_success_rate']:.2%}"
     
     # Construct fields for the attachment
