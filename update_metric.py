@@ -68,9 +68,9 @@ def calculate_metrics(df):
     agent_ladder_success_rates = calculate_agent_ladder_success_rates(df)
     
     return {
-        'overall_success_rate': overall_success_rate,
-        'total_successes': total_successes,
-        'total_runs': total_runs,
+        'overall_success_rate': float(overall_success_rate),
+        'total_successes': int(total_successes),
+        'total_runs': int(total_runs),
         'top_model': top_model,
         'latest_timestamp': latest_timestamp,
         'agent_ladder_success_rates': agent_ladder_success_rates
@@ -159,10 +159,6 @@ if __name__ == "__main__":
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             # Use json.dumps to serialize the payload
             f.write(f"slack_payload={json.dumps(slack_payload)}\n")
-        
-        # Optional: Print metrics for debugging
-        print("Metrics Calculated:")
-        print(json.dumps(metrics, indent=2))
     except Exception as e:
         error_payload = {
             "text": f"Error in update_metrics.py: {str(e)}",
