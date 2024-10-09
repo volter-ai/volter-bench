@@ -1,0 +1,438 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url
+2024-10-09 12:25:08,25389516-b479-4af1-ab59-780e67f91353,OneShotCoreAgent,creature_battler_01,7,success,,,['new_prompt_logs/999872_874057_OneShotCoreAgent'],ladder/creature_battler_01_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:25:14,54703288-22fd-4494-af51-f7b08b2de992,OneShotCoreAgent,creature_battler_01,5,success,,,['new_prompt_logs/999875_801434_OneShotCoreAgent'],ladder/creature_battler_01_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:25:16,a585168d-60b5-4f0a-af35-cf945a96a74c,OneShotCoreAgent,creature_battler_02,1,success,,,['new_prompt_logs/999870_647243_OneShotCoreAgent'],ladder/creature_battler_02_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:25:20,6166ff64-7b3c-4411-88a2-5b348875cf53,OneShotCoreAgent,creature_battler_02,4,success,,,['new_prompt_logs/999869_708264_OneShotCoreAgent'],ladder/creature_battler_02_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:25:48,c449803c-2ef8-46f0-80b5-f91548a82d58,OneShotCoreAgent,creature_battler_01,2,success,,,['new_prompt_logs/999878_137544_OneShotCoreAgent'],ladder/creature_battler_01_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:08,d42ed63f-e1b9-4e61-9f0c-79e3254cfc4d,OneShotCoreAgent,creature_battler_02,2,failure,"After 5 attempts to debug, could not create a bug-free game. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.9, pytest-7.3.1, pluggy-1.5.0
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, Faker-30.1.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collected 3 items
+
+main_game/tests/test_main_game_scene.py F                                [ 33%]
+main_game/tests/test_main_menu_scene.py .                                [ 66%]
+main_game/tests/test_whole_game.py .                                     [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        for i in range(10):
+            print(f""starting random run iteration {i}"")
+            HumanListener.random_mode = True
+            HumanListener.random_mode_counter = 100  # Increased to ensure all battles and menu interactions complete
+    
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+    
+            try:
+                main_game_scene.run()
+            except AbstractApp._QuitWholeGame:
+                print(""Game ended gracefully"")
+            except RandomModeGracefulExit:
+                print(f""`random_mode_counter` reached 0 and the game did not crash. Ending run {i} gracefully"")
+    
+            # Assert that all battles were completed
+            assert main_game_scene.battle_count == main_game_scene.max_battles, f""Not all battles were completed. Only {main_game_scene.battle_count} out of {main_game_scene.max_battles} were played.""
+    
+            # Assert that the game returned to the main menu
+            assert isinstance(app._current_scene, type(app.scene_registry[""MainMenuScene""](app, player))), ""Game did not return to the main menu after battles""
+    
+            # Assert that the game count in the main menu was incremented
+>           assert app._current_scene.game_count > 0, ""Game count in main menu was not incremented""
+E           AssertionError: Game count in main menu was not incremented
+E           assert 0 > 0
+E            +  where 0 = <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]>.game_count
+E            +    where <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]> = <main_game.main.App object at 0x[REDACTED]>._current_scene
+
+main_game/tests/test_main_game_scene.py:35: AssertionError
+----------------------------- Captured stdout call -----------------------------
+starting random run iteration 0
+Battle 1 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 2 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 3 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+All battles completed. Returning to main menu...
+Game ended gracefully
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+","Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 69, in execute
+    await self.sdk.execute_as_task(PytestRunnerAgent, verbose=False)
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/game/pytest_runner_agent/logic.py"", line 27, in execute
+    output = run_pytest(test_file_path, project_root=self.sdk.project_directory, verbose=self.verbose)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-std-agents/agent_lib/random_run_utils.py"", line 119, in run_pytest
+    raise AssertionError(f""Pytest failed with exit code {exit_code}. Output:\n{output}"")
+AssertionError: Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.9, pytest-7.3.1, pluggy-1.5.0
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, Faker-30.1.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collected 3 items
+
+main_game/tests/test_main_game_scene.py F                                [ 33%]
+main_game/tests/test_main_menu_scene.py .                                [ 66%]
+main_game/tests/test_whole_game.py .                                     [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        for i in range(10):
+            print(f""starting random run iteration {i}"")
+            HumanListener.random_mode = True
+            HumanListener.random_mode_counter = 100  # Increased to ensure all battles and menu interactions complete
+    
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+    
+            try:
+                main_game_scene.run()
+            except AbstractApp._QuitWholeGame:
+                print(""Game ended gracefully"")
+            except RandomModeGracefulExit:
+                print(f""`random_mode_counter` reached 0 and the game did not crash. Ending run {i} gracefully"")
+    
+            # Assert that all battles were completed
+            assert main_game_scene.battle_count == main_game_scene.max_battles, f""Not all battles were completed. Only {main_game_scene.battle_count} out of {main_game_scene.max_battles} were played.""
+    
+            # Assert that the game returned to the main menu
+            assert isinstance(app._current_scene, type(app.scene_registry[""MainMenuScene""](app, player))), ""Game did not return to the main menu after battles""
+    
+            # Assert that the game count in the main menu was incremented
+>           assert app._current_scene.game_count > 0, ""Game count in main menu was not incremented""
+E           AssertionError: Game count in main menu was not incremented
+E           assert 0 > 0
+E            +  where 0 = <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]>.game_count
+E            +    where <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]> = <main_game.main.App object at 0x[REDACTED]>._current_scene
+
+main_game/tests/test_main_game_scene.py:35: AssertionError
+----------------------------- Captured stdout call -----------------------------
+starting random run iteration 0
+Battle 1 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 2 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 3 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+All battles completed. Returning to main menu...
+Game ended gracefully
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 92, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 76, in execute
+    raise FixableException(
+common.exceptions.FixableException: After 5 attempts to debug, could not create a bug-free game. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.9, pytest-7.3.1, pluggy-1.5.0
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, Faker-30.1.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collected 3 items
+
+main_game/tests/test_main_game_scene.py F                                [ 33%]
+main_game/tests/test_main_menu_scene.py .                                [ 66%]
+main_game/tests/test_whole_game.py .                                     [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        for i in range(10):
+            print(f""starting random run iteration {i}"")
+            HumanListener.random_mode = True
+            HumanListener.random_mode_counter = 100  # Increased to ensure all battles and menu interactions complete
+    
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+    
+            try:
+                main_game_scene.run()
+            except AbstractApp._QuitWholeGame:
+                print(""Game ended gracefully"")
+            except RandomModeGracefulExit:
+                print(f""`random_mode_counter` reached 0 and the game did not crash. Ending run {i} gracefully"")
+    
+            # Assert that all battles were completed
+            assert main_game_scene.battle_count == main_game_scene.max_battles, f""Not all battles were completed. Only {main_game_scene.battle_count} out of {main_game_scene.max_battles} were played.""
+    
+            # Assert that the game returned to the main menu
+            assert isinstance(app._current_scene, type(app.scene_registry[""MainMenuScene""](app, player))), ""Game did not return to the main menu after battles""
+    
+            # Assert that the game count in the main menu was incremented
+>           assert app._current_scene.game_count > 0, ""Game count in main menu was not incremented""
+E           AssertionError: Game count in main menu was not incremented
+E           assert 0 > 0
+E            +  where 0 = <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]>.game_count
+E            +    where <main_game.scenes.main_menu_scene.MainMenuScene object at 0x[REDACTED]> = <main_game.main.App object at 0x[REDACTED]>._current_scene
+
+main_game/tests/test_main_game_scene.py:35: AssertionError
+----------------------------- Captured stdout call -----------------------------
+starting random run iteration 0
+Battle 1 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 2 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+Battle 3 of 3
+A wild Scizard appears!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool uses Tackle! Scizard takes 3 damage!
+Scizard uses Tackle! Bubwool takes 4 damage!
+Bubwool fainted! You lose!
+All battles completed. Returning to main menu...
+Game ended gracefully
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 2 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+",['new_prompt_logs/999873_940574_OneShotCoreAgent'],ladder/creature_battler_02_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:10,2fa4f789-6843-4cec-86a8-327924fc9221,OneShotCoreAgent,creature_battler_01,6,success,,,['new_prompt_logs/999874_844194_OneShotCoreAgent'],ladder/creature_battler_01_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:21,2f6a60bf-ff61-4bb7-a4bf-f1082628f222,OneShotCoreAgent,creature_battler_01,1,success,,,['new_prompt_logs/999878_976006_OneShotCoreAgent'],ladder/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:22,7fd45b57-feee-4072-9cd1-f253372801ee,OneShotCoreAgent,creature_battler_01,4,success,,,['new_prompt_logs/999876_237486_OneShotCoreAgent'],ladder/creature_battler_01_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:27,98c21324-e17a-4c0c-8942-464ce7eb616c,OneShotCoreAgent,creature_battler_01,3,success,,,['new_prompt_logs/999877_464261_OneShotCoreAgent'],ladder/creature_battler_01_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:26:34,d67481df-9a22-4f95-83f9-152736099445,OneShotCoreAgent,creature_battler_02,3,success,,,['new_prompt_logs/999871_213678_OneShotCoreAgent'],ladder/creature_battler_02_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:27:59,d36df571-cd33-42b1-a0a3-5a77c23e4e14,OneShotCoreAgent,creature_battler_02,5,success,,,['new_prompt_logs/999868_630316_OneShotCoreAgent'],ladder/creature_battler_02_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:28:05,5755277d-c83b-4ccd-a9ea-eff1d76dfae0,OneShotCoreAgent,creature_battler_03,4,success,,,['new_prompt_logs/999873_940574_OneShotCoreAgent'],ladder/creature_battler_03_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:28:29,bf72026a-7045-401c-bd68-8b154eae9ca1,OneShotCoreAgent,creature_battler_03,6,success,,,['new_prompt_logs/999878_976006_OneShotCoreAgent'],ladder/creature_battler_03_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:28:41,d166fbb9-ed52-41a1-af15-6c48f8c3edbb,OneShotCoreAgent,creature_battler_02,7,success,,,['new_prompt_logs/999875_801434_OneShotCoreAgent'],ladder/creature_battler_02_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:29:25,06d33e65-1f0e-4ef8-a10b-657358c59406,OneShotCoreAgent,creature_battler_03,5,success,,,['new_prompt_logs/999874_844194_OneShotCoreAgent'],ladder/creature_battler_03_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:29:28,07e16662-cef0-4c91-adad-fd8b664ecc06,OneShotCoreAgent,creature_battler_04,1,success,,,['new_prompt_logs/999877_464261_OneShotCoreAgent'],ladder/creature_battler_04_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:29:35,8b7cd373-73d5-4eb2-83c3-013245a44850,OneShotCoreAgent,creature_battler_03,7,success,,,['new_prompt_logs/999876_237486_OneShotCoreAgent'],ladder/creature_battler_03_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:29:50,9e9cf128-e22e-4c75-92b6-488f93648756,OneShotCoreAgent,creature_battler_03,3,success,,,['new_prompt_logs/999878_137544_OneShotCoreAgent'],ladder/creature_battler_03_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:30:04,dcbed23e-4850-4865-8414-5b0870633d46,OneShotCoreAgent,creature_battler_03,1,success,,,['new_prompt_logs/999870_647243_OneShotCoreAgent'],ladder/creature_battler_03_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:31:02,f49f567c-c017-4a50-9dae-1c4d80fbe8ed,OneShotCoreAgent,creature_battler_04,3,success,,,['new_prompt_logs/999868_630316_OneShotCoreAgent'],ladder/creature_battler_04_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:31:06,c582cf20-2bf3-4479-9485-27b4edd280ae,OneShotCoreAgent,creature_battler_03,2,success,,,['new_prompt_logs/999869_708264_OneShotCoreAgent'],ladder/creature_battler_03_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:31:36,b6769122-f498-4af3-af74-7dc25241371c,OneShotCoreAgent,creature_battler_02,6,failure,"After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The MainMenuScene does not explicitly display a welcome message to the player, which is a requirement stated in the architecture documentation."",
+  ""qa_result"": ""failed""
+}","Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 92, in execute
+    result = await self.sdk.execute_as_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa/all_qa_code_reader/logic.py"", line 60, in execute
+    raise QAException(json.dumps({
+mge_agents.qa.all_qa_code_reader.logic.QAException: {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The MainMenuScene does not explicitly display a welcome message to the player, which is a requirement stated in the architecture documentation."",
+  ""qa_result"": ""failed""
+}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 92, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 98, in execute
+    raise FixableException(
+common.exceptions.FixableException: After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The MainMenuScene does not explicitly display a welcome message to the player, which is a requirement stated in the architecture documentation."",
+  ""qa_result"": ""failed""
+}
+",['new_prompt_logs/999872_874057_OneShotCoreAgent'],ladder/creature_battler_02_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:31:41,b7325a1f-16c5-4af5-bc74-ae9bcfebb206,OneShotCoreAgent,creature_battler_04,2,success,,,['new_prompt_logs/999871_213678_OneShotCoreAgent'],ladder/creature_battler_04_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:32:52,a2fe6fdc-6a8b-4660-a124-5a23ccf199bd,OneShotCoreAgent,creature_battler_04,4,success,,,['new_prompt_logs/999873_940574_OneShotCoreAgent'],ladder/creature_battler_04_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:33:45,06e55eb6-9dc7-41bb-b537-03305c285f14,OneShotCoreAgent,creature_battler_04,5,success,,,['new_prompt_logs/999878_976006_OneShotCoreAgent'],ladder/creature_battler_04_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:34:26,edb28b00-4369-432b-9fb3-f3809eac81a7,OneShotCoreAgent,creature_battler_05,2,success,,,['new_prompt_logs/999876_237486_OneShotCoreAgent'],ladder/creature_battler_05_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:34:33,50808e37-fa2f-4ae4-8a46-a02034e8fed4,OneShotCoreAgent,creature_battler_04,6,success,,,['new_prompt_logs/999875_801434_OneShotCoreAgent'],ladder/creature_battler_04_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:34:37,47ea78ae-faaa-4df0-acd9-7e00ac37eb41,OneShotCoreAgent,creature_battler_05,5,success,,,['new_prompt_logs/999868_630316_OneShotCoreAgent'],ladder/creature_battler_05_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:35:32,ec90018e-e9e6-4c87-a436-d8efc653c716,OneShotCoreAgent,creature_battler_05,6,success,,,['new_prompt_logs/999869_708264_OneShotCoreAgent'],ladder/creature_battler_05_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:35:51,9245d062-0b17-41de-aabd-a32f3bdff192,OneShotCoreAgent,creature_battler_04,7,failure,"After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The code has discrepancies in the damage calculation and creature state reset logic compared to the architecture. Specifically, the physical damage calculation does not match the specified formula, and the final damage conversion to integer is not explicitly clear. Additionally, the implementation resets all of the player's creatures instead of just the one that was in battle."",
+  ""qa_result"": ""failed""
+}","Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 92, in execute
+    result = await self.sdk.execute_as_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa/all_qa_code_reader/logic.py"", line 60, in execute
+    raise QAException(json.dumps({
+mge_agents.qa.all_qa_code_reader.logic.QAException: {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The code has discrepancies in the damage calculation and creature state reset logic compared to the architecture. Specifically, the physical damage calculation does not match the specified formula, and the final damage conversion to integer is not explicitly clear. Additionally, the implementation resets all of the player's creatures instead of just the one that was in battle."",
+  ""qa_result"": ""failed""
+}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 92, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 98, in execute
+    raise FixableException(
+common.exceptions.FixableException: After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The code has discrepancies in the damage calculation and creature state reset logic compared to the architecture. Specifically, the physical damage calculation does not match the specified formula, and the final damage conversion to integer is not explicitly clear. Additionally, the implementation resets all of the player's creatures instead of just the one that was in battle."",
+  ""qa_result"": ""failed""
+}
+",['new_prompt_logs/999874_844194_OneShotCoreAgent'],ladder/creature_battler_04_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:36:01,63164081-54a8-47d4-a96a-348a1e07ec7f,OneShotCoreAgent,creature_battler_05,1,success,,,['new_prompt_logs/999877_464261_OneShotCoreAgent'],ladder/creature_battler_05_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:39:03,dd3b4aef-8ee3-4b20-93d8-34467f5b6a0d,OneShotCoreAgent,creature_battler_05,3,failure,"After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation closely follows the described architecture, but there are discrepancies regarding the handling of creature state resets and the timing of skill execution during swaps. Additionally, the handling of simultaneous swaps is not explicitly defined in the architecture."",
+  ""qa_result"": ""failed""
+}","Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 92, in execute
+    result = await self.sdk.execute_as_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa/all_qa_code_reader/logic.py"", line 60, in execute
+    raise QAException(json.dumps({
+mge_agents.qa.all_qa_code_reader.logic.QAException: {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation closely follows the described architecture, but there are discrepancies regarding the handling of creature state resets and the timing of skill execution during swaps. Additionally, the handling of simultaneous swaps is not explicitly defined in the architecture."",
+  ""qa_result"": ""failed""
+}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 92, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 98, in execute
+    raise FixableException(
+common.exceptions.FixableException: After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation closely follows the described architecture, but there are discrepancies regarding the handling of creature state resets and the timing of skill execution during swaps. Additionally, the handling of simultaneous swaps is not explicitly defined in the architecture."",
+  ""qa_result"": ""failed""
+}
+",['new_prompt_logs/999878_137544_OneShotCoreAgent'],ladder/creature_battler_05_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:39:38,a0523862-6556-454a-bbd0-84568957a1f3,OneShotCoreAgent,creature_battler_05,4,success,,,['new_prompt_logs/999870_647243_OneShotCoreAgent'],ladder/creature_battler_05_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-10-09 12:41:12,39b642e8-a823-42b7-a3d0-49345161a2f9,OneShotCoreAgent,creature_battler_05,7,success,,,['new_prompt_logs/999872_874057_OneShotCoreAgent'],ladder/creature_battler_05_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/c21c7476079019b1b22f898d604aef0751cefa74/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
