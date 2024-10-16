@@ -7,8 +7,10 @@ from fractions import Fraction
 DATA_DIR = Path("data")
 THRESHOLD = 0.8  # 80%
 
+
 def get_subdirectories(base_dir):
     return [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+
 
 def load_data(data_directory):
     all_data = []
@@ -21,11 +23,13 @@ def load_data(data_directory):
                 all_data.append(df)
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
+
 def calculate_overall_success_rate(df):
     total_runs = len(df)
     total_successes = (df['status'] == 'success').sum()
     success_rate = total_successes / total_runs if total_runs > 0 else 0
     return success_rate, total_successes, total_runs
+
 
 def calculate_agent_ladder_success_rates(df):
     success_rates = df.groupby(['agent_id', 'ladder']).agg({
@@ -34,39 +38,44 @@ def calculate_agent_ladder_success_rates(df):
     success_rates.columns = ['agent_id', 'ladder', 'success_rate']
     return success_rates
 
-def load_latest_results():
+
+def load_latest_results(benchmark: str | None = None):
     subdirs = get_subdirectories(DATA_DIR)
     all_data = pd.DataFrame()
-    
+
     for subdir in subdirs:
+        # filter out for a specific benchmark
+        if benchmark and subdir != benchmark:
+            continue
         data_directory = os.path.join(DATA_DIR, subdir)
         subdir_data = load_data(data_directory)
         if not subdir_data.empty:
             subdir_data['benchmark'] = subdir
             all_data = pd.concat([all_data, subdir_data], ignore_index=True)
-    
+
     if all_data.empty:
         raise Exception("No data found in any subdirectory")
-    
+
     latest_file_timestamp = all_data['file_timestamp'].max()
     latest_run_data = all_data[all_data['file_timestamp'] == latest_file_timestamp]
-    
+
     return latest_run_data
+
 
 def calculate_metrics(df):
     overall_success_rate, total_successes, total_runs = calculate_overall_success_rate(df)
-    
+
     # Identify the top model based on total successes
     successes_per_agent = df[df['status'] == 'success'].groupby('agent_id').size()
     if not successes_per_agent.empty:
         top_model = successes_per_agent.idxmax()
     else:
         top_model = "N/A"
-    
+
     latest_timestamp = df['file_timestamp'].iloc[0]
-    
+
     agent_ladder_success_rates = calculate_agent_ladder_success_rates(df)
-    
+
     return {
         'overall_success_rate': float(overall_success_rate),
         'total_successes': int(total_successes),
@@ -76,19 +85,20 @@ def calculate_metrics(df):
         'agent_ladder_success_rates': agent_ladder_success_rates
     }
 
+
 def generate_slack_payload(metrics, job_status=None, build_url=None):
     # Determine the color based on the success rate
     color = "danger" if metrics['overall_success_rate'] < THRESHOLD else "good"
-    
+
     # Pretext for the attachment
     text = "Latest Benchmark Results"
-    
+
     # Convert overall success rate to a fraction and percentage
     numerator = metrics['total_successes']
     denominator = metrics['total_runs']
     fraction_str = f"{numerator}/{denominator}"
     percentage_str = f"{metrics['overall_success_rate']:.2%}"
-    
+
     # Construct fields for the attachment
     fields = [
         {
@@ -107,7 +117,7 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
             "short": False
         }
     ]
-    
+
     # Add Agent Ladder Success Rates
     for _, row in metrics['agent_ladder_success_rates'].iterrows():
         fields.append({
@@ -115,7 +125,7 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
             "value": f"{row['success_rate']:.2%}",
             "short": True
         })
-    
+
     # Append additional information if available
     additional_fields = []
     if job_status:
@@ -131,7 +141,7 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
             "short": False
         })
     fields.extend(additional_fields)
-    
+
     # Construct the payload
     payload = {
         "text": text,
@@ -142,20 +152,21 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
             }
         ]
     }
-    
+
     return payload
+
 
 if __name__ == "__main__":
     try:
         # Retrieve job status and build URL from environment variables
         job_status = os.getenv('JOB_STATUS')
         build_url = os.getenv('BUILD_URL')
-        
-        latest_results = load_latest_results()
+
+        latest_results = load_latest_results(benchmark="bench_one_shot_full")
         metrics = calculate_metrics(latest_results)
-        
+
         slack_payload = generate_slack_payload(metrics, job_status=job_status, build_url=build_url)
-        
+
         # Write the output to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             # Use json.dumps to serialize the payload
