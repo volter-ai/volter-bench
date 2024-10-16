@@ -1,8 +1,9 @@
-import os
+import argparse
 import json
-import pandas as pd
+import os
 from pathlib import Path
-from fractions import Fraction
+
+import pandas as pd
 
 DATA_DIR = Path("data")
 THRESHOLD = 0.8  # 80%
@@ -157,12 +158,16 @@ def generate_slack_payload(metrics, job_status=None, build_url=None):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Process benchmark results and generate Slack payload.")
+    parser.add_argument("--benchmark_name", type=str, default="bench_one_shot_core", help="Name of the benchmark to process")
+    args = parser.parse_args()
+
     try:
         # Retrieve job status and build URL from environment variables
         job_status = os.getenv('JOB_STATUS')
         build_url = os.getenv('BUILD_URL')
 
-        latest_results = load_latest_results(benchmark="bench_one_shot_full")
+        latest_results = load_latest_results(benchmark=args.benchmark_name)
         metrics = calculate_metrics(latest_results)
 
         slack_payload = generate_slack_payload(metrics, job_status=job_status, build_url=build_url)
