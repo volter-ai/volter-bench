@@ -1,0 +1,46 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url
+2024-09-19 10:35:19,7f42ce6c-cb1b-4ee9-ba5c-83e36ad61e4f,OneShotCoreAgent,creature_battler_03,1,success,,,['new_prompt_logs/OneShotCoreAgent_1726756506_2352'],ladder/creature_battler_03_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/39e720fa80227de8751d2fb68ec02393e7aa1144/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-09-19 10:35:24,a16e54e6-5cd6-4179-845e-3a95329a396e,OneShotCoreAgent,creature_battler_01,1,success,,,['new_prompt_logs/OneShotCoreAgent_1726756506_1526'],ladder/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/39e720fa80227de8751d2fb68ec02393e7aa1144/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-09-19 10:35:28,cf36cbc9-a3db-4e3a-85d8-aa56c75a9d75,OneShotCoreAgent,creature_battler_02,1,success,,,['new_prompt_logs/OneShotCoreAgent_1726756506_7203'],ladder/creature_battler_02_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/39e720fa80227de8751d2fb68ec02393e7aa1144/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-09-19 10:35:32,ad3b15f1-58fd-400d-84fc-59365a9f0243,OneShotCoreAgent,creature_battler_04,1,success,,,['new_prompt_logs/OneShotCoreAgent_1726756506_2551'],ladder/creature_battler_04_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/39e720fa80227de8751d2fb68ec02393e7aa1144/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py
+2024-09-19 10:35:44,180f4053-3fa1-4c0c-b54f-a356db460889,OneShotCoreAgent,creature_battler_05,1,failure,"After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation does not correctly handle the case where two creatures have equal speed; it uses the original action order as a tie-breaker instead of randomly selecting which creature goes first, as specified in the architecture."",
+  ""qa_result"": ""failed""
+}","Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 92, in execute
+    result = await self.sdk.execute_as_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 261, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa/all_qa_code_reader/logic.py"", line 60, in execute
+    raise QAException(json.dumps({
+mge_agents.qa.all_qa_code_reader.logic.QAException: {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation does not correctly handle the case where two creatures have equal speed; it uses the original action order as a tie-breaker instead of randomly selecting which creature goes first, as specified in the architecture."",
+  ""qa_result"": ""failed""
+}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 86, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py"", line 98, in execute
+    raise FixableException(
+common.exceptions.FixableException: After 5 attempts to debug, could not create an accurate game. Got issue {
+  ""issue"": ""A QA pass has detected a problem with the current implementation."",
+  ""explanation"": ""The implementation does not correctly handle the case where two creatures have equal speed; it uses the original action order as a tie-breaker instead of randomly selecting which creature goes first, as specified in the architecture."",
+  ""qa_result"": ""failed""
+}
+",['new_prompt_logs/OneShotCoreAgent_1726756506_8310'],ladder/creature_battler_05_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/39e720fa80227de8751d2fb68ec02393e7aa1144/packages/lib-volter-mge2/mge_agents/one_shot_gen/one_shot_core.py

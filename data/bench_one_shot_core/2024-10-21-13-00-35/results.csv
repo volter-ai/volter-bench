@@ -1,0 +1,35 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url,project_type
+2024-10-21 13:02:25,95e6f889-af36-40aa-b643-842cbf3da1b0,OneShotCoreAgent,creature_battler_02,5,failure,,"Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 95, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_core.py"", line 95, in execute
+    result = await self.sdk.execute_as_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/qa/all_qa_code_reader/logic.py"", line 57, in execute
+    result = await ChatWrapper().execute_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/chat_wrapper.py"", line 334, in execute_message
+    response = await self.execute_conversation(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/chat_wrapper.py"", line 305, in execute_conversation
+    response_obj = await executor(retries=retries, response_message=response_chat_message)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/chat_wrapper.py"", line 290, in runner
+    raise e
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/chat_wrapper.py"", line 273, in runner
+    assert isinstance(result, output_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+",['new_prompt_logs/999582_690271_OneShotCoreAgent'],ladder/creature_battler_02_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/6c438019ea6e0c2ff4c2cc6997fce3a27f9b2fe8/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_core.py,mge2_game
