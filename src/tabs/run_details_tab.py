@@ -42,6 +42,7 @@ def display_run_details_tab(all_data, data_directory):
             st.write(f"Branch: {row['branch']}")  # Added branch information
             
             # GitHub links
+            print(f"data directory: {data_directory}")
             github_url = get_github_url(row, data_directory)
             st.markdown(f"[View logs on GitHub]({github_url})")
             
