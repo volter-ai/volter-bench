@@ -1,3 +1,0 @@
-# MainMenuScene
-
-This is default
