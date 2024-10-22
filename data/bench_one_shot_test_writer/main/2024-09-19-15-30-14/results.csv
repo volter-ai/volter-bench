@@ -1,0 +1,276 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url
+2024-09-19 15:30:43,400d1582-4fa0-4213-bec2-dfb4631115c3,QATestWriter2,rps,1,success,,,['new_prompt_logs/1726774219_637562_QATestWriter2'],ladder_view/rps_1/main_game,none
+2024-09-19 15:30:46,23473d74-4cd6-485f-96c6-4c202087223c,QATestWriter2,creature_battle_01,1,success,,,['new_prompt_logs/1726774219_188629_QATestWriter2'],ladder_view/creature_battle_01_1/main_game,none
+2024-09-19 15:31:18,24fe5076-e6a7-450a-9687-421ccb29a86a,QATestWriter2,creature_battle_01,2,success,,,['new_prompt_logs/1726774219_862123_QATestWriter2'],ladder_view/creature_battle_01_2/main_game,none
+2024-09-19 15:31:20,f4d280a5-bc45-4a68-a192-aebbf6cbac12,QATestWriter2,creature_battle_01,3,success,,,['new_prompt_logs/1726774219_164861_QATestWriter2'],ladder_view/creature_battle_01_3/main_game,none
+2024-09-19 15:32:17,740ce84c-0af4-434b-8693-19cb69f3e92f,QATestWriter2,creature_battle_05,3,success,,,['new_prompt_logs/1726774219_247355_QATestWriter2'],ladder_view/creature_battle_05_3/main_game,none
+2024-09-19 15:32:33,0dcf472c-5f21-4df2-9323-8e8018693e7f,QATestWriter2,creature_battle_05,1,success,,,['new_prompt_logs/1726774219_341313_QATestWriter2'],ladder_view/creature_battle_05_1/main_game,none
+2024-09-19 15:32:37,c4a74641-cb13-49eb-aac5-4dd023ee752c,QATestWriter2,rps,3,success,,,['new_prompt_logs/1726774219_476440_QATestWriter2'],ladder_view/rps_3/main_game,none
+2024-09-19 15:33:18,20ac29b6-7fdf-4ce5-bc02-bae2982f3218,QATestWriter2,rps,2,failure,"After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 4 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run FAILED [ 25%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_player_wins_two_rounds_and_plays_again PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_bot_wins_two_rounds_and_player_quits PASSED [ 75%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_three_rounds_with_tie_player_wins_and_quits PASSED [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        HumanListener.random_mode = True
+    
+        for i in range(10):
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+            runner = ThreadedSceneRunner()
+            runner.start_game(main_game_scene)
+    
+            # Run through the game events
+            for event in runner.iterate_game_events():
+                if event['type'] == 'choice_request':
+                    choices = event['choices']
+                    runner.make_choice(choices[0])  # Always choose the first option in random mode
+                elif event['type'] == 'scene_transition':
+                    break  # End of game
+    
+            # Assert that the game ended (transitioned to a new scene)
+>           assert event['type'] == 'scene_transition'
+E           AssertionError: assert 'choice_request' == 'scene_transition'
+E             - scene_transition
+E             + choice_request
+
+main_game/tests/test_main_game_scene.py:31: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Welcome to the Rock Paper Scissors game!
+Round 1
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 2
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 3
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+The game ended in a tie!
+Final Score - You: 0, Bot: 0
+_wait_for_choice(Player, [Button(Play Again), Button(Quit)])
+_wait_for_choice received choice Button(Play Again)
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 3 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+","Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 61, in execute
+    try:
+        ^
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-std-agents/agent_lib/random_run_utils.py"", line 119, in run_pytest
+    raise AssertionError(f""Pytest failed with exit code {exit_code}. Output:\n{output}"")
+AssertionError: Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 4 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run FAILED [ 25%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_player_wins_two_rounds_and_plays_again PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_bot_wins_two_rounds_and_player_quits PASSED [ 75%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_three_rounds_with_tie_player_wins_and_quits PASSED [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        HumanListener.random_mode = True
+    
+        for i in range(10):
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+            runner = ThreadedSceneRunner()
+            runner.start_game(main_game_scene)
+    
+            # Run through the game events
+            for event in runner.iterate_game_events():
+                if event['type'] == 'choice_request':
+                    choices = event['choices']
+                    runner.make_choice(choices[0])  # Always choose the first option in random mode
+                elif event['type'] == 'scene_transition':
+                    break  # End of game
+    
+            # Assert that the game ended (transitioned to a new scene)
+>           assert event['type'] == 'scene_transition'
+E           AssertionError: assert 'choice_request' == 'scene_transition'
+E             - scene_transition
+E             + choice_request
+
+main_game/tests/test_main_game_scene.py:31: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Welcome to the Rock Paper Scissors game!
+Round 1
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 2
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 3
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+The game ended in a tie!
+Final Score - You: 0, Bot: 0
+_wait_for_choice(Player, [Button(Play Again), Button(Quit)])
+_wait_for_choice received choice Button(Play Again)
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 3 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 90, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 66, in execute
+    if test_checker_idx >= self.max_number_of_runs:
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+common.exceptions.FixableException: After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 4 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run FAILED [ 25%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_player_wins_two_rounds_and_plays_again PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_bot_wins_two_rounds_and_player_quits PASSED [ 75%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_three_rounds_with_tie_player_wins_and_quits PASSED [100%]
+
+=================================== FAILURES ===================================
+__________ TestMainGameSceneRandomRun.test_main_game_scene_random_run __________
+
+self = <tests.test_main_game_scene.TestMainGameSceneRandomRun object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>
+
+    def test_main_game_scene_random_run(self, app):
+        HumanListener.random_mode = True
+    
+        for i in range(10):
+            player = app.create_player(f""player_{i}"")
+            main_game_scene = MainGameScene(app, player)
+            runner = ThreadedSceneRunner()
+            runner.start_game(main_game_scene)
+    
+            # Run through the game events
+            for event in runner.iterate_game_events():
+                if event['type'] == 'choice_request':
+                    choices = event['choices']
+                    runner.make_choice(choices[0])  # Always choose the first option in random mode
+                elif event['type'] == 'scene_transition':
+                    break  # End of game
+    
+            # Assert that the game ended (transitioned to a new scene)
+>           assert event['type'] == 'scene_transition'
+E           AssertionError: assert 'choice_request' == 'scene_transition'
+E             - scene_transition
+E             + choice_request
+
+main_game/tests/test_main_game_scene.py:31: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Welcome to the Rock Paper Scissors game!
+Round 1
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 2
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+Round 3
+_wait_for_choice(Player, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+_wait_for_choice(Bot, [SelectThing(Skill(rock)), SelectThing(Skill(paper)), SelectThing(Skill(scissors))])
+_wait_for_choice received choice SelectThing(Skill(rock))
+You chose Rock
+Bot chose Rock
+It's a tie!
+The game ended in a tie!
+Final Score - You: 0, Bot: 0
+_wait_for_choice(Player, [Button(Play Again), Button(Quit)])
+_wait_for_choice received choice Button(Play Again)
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run
+========================= 1 failed, 3 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+",['new_prompt_logs/1726774219_752249_QATestWriter2'],ladder_view/rps_2/main_game,none
+2024-09-19 15:33:19,8a748b72-a17e-481e-b796-a121f7efb9be,QATestWriter2,creature_battle_05,2,success,,,['new_prompt_logs/1726774219_821568_QATestWriter2'],ladder_view/creature_battle_05_2/main_game,none

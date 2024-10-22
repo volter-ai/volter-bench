@@ -1,0 +1,139 @@
+import { useCurrentButtons, useThingInteraction } from "@/lib/useChoices.ts";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Sword, ArrowLeft, Repeat } from 'lucide-react';
+
+interface Creature {
+  uid: string;
+  display_name: string;
+  stats: {
+    hp: number;
+    max_hp: number;
+  };
+  meta: {
+    creature_type: string;
+  };
+}
+
+interface Player {
+  uid: string;
+  entities: {
+    active_creature: Creature;
+  };
+}
+
+interface GameUIData {
+  entities: {
+    player: Player;
+    bot: Player;
+  };
+}
+
+interface Skill {
+  uid: string;
+  display_name: string;
+  description: string;
+}
+
+const CreatureDisplay = ({ creature, isPlayer }: { creature: Creature; isPlayer: boolean }) => (
+  <div className={`cq-w-1/2 cq-h-full flex ${isPlayer ? 'items-end' : 'items-start'} justify-center`}>
+    <div className="cq-w-32 cq-h-32 bg-gray-300 rounded-full flex items-center justify-center">
+      {creature.display_name[0]}
+    </div>
+  </div>
+);
+
+const CreatureStatus = ({ creature }: { creature: Creature }) => (
+  <Card className="cq-w-1/2 cq-p-2">
+    <h3 className="text-lg font-bold">{creature.display_name}</h3>
+    <div className="cq-w-full bg-gray-200 rounded-full cq-h-2.5">
+      <div
+        className="bg-blue-600 cq-h-2.5 rounded-full"
+        style={{ width: `${(creature.stats.hp / creature.stats.max_hp) * 100}%` }}
+      ></div>
+    </div>
+    <p>{creature.stats.hp} / {creature.stats.max_hp} HP</p>
+  </Card>
+);
+
+const ActionButtons = ({ availableButtonSlugs, emitButtonClick, availableInteractiveThingIds, emitThingClick }: { 
+  availableButtonSlugs: string[], 
+  emitButtonClick: (slug: string) => void,
+  availableInteractiveThingIds: string[],
+  emitThingClick: (uid: string) => void
+}) => {
+  const skills: Skill[] = availableInteractiveThingIds.map(uid => ({
+    uid,
+    display_name: uid === "ad727587-a8b0-5bad-de3c-3da9ccb39601" ? "Tackle" : "Lick",
+    description: uid === "ad727587-a8b0-5bad-de3c-3da9ccb39601" 
+      ? "Throw yourself at a foe, dealing damage." 
+      : "Lick a foe with a wet tongue, dealing damage."
+  }));
+
+  return (
+    <div className="grid grid-cols-2 gap-2 cq-p-4">
+      <Button
+        onClick={() => emitButtonClick('attack')}
+        disabled={!availableButtonSlugs.includes('attack')}
+        className="cq-h-12"
+      >
+        <Sword className="mr-2" />
+        Attack
+      </Button>
+      {skills.map((skill) => (
+        <Button
+          key={skill.uid}
+          onClick={() => emitThingClick(skill.uid)}
+          className="cq-h-12"
+        >
+          <Sword className="mr-2" />
+          {skill.display_name}
+        </Button>
+      ))}
+      {['back', 'swap'].map((action) => (
+        <Button
+          key={action}
+          onClick={() => emitButtonClick(action)}
+          disabled={!availableButtonSlugs.includes(action)}
+          className="cq-h-12"
+        >
+          {action === 'back' && <ArrowLeft className="mr-2" />}
+          {action === 'swap' && <Repeat className="mr-2" />}
+          {action.charAt(0).toUpperCase() + action.slice(1)}
+        </Button>
+      ))}
+    </div>
+  );
+};
+
+export function MainGameSceneView(props: { data: GameUIData }) {
+  const { availableButtonSlugs, emitButtonClick } = useCurrentButtons();
+  const { availableInteractiveThingIds, emitThingClick } = useThingInteraction();
+
+  const playerCreature = props.data.entities.player.entities.active_creature;
+  const botCreature = props.data.entities.bot.entities.active_creature;
+
+  return (
+    <div className="cq-w-full cq-h-full flex flex-col">
+      <div className="cq-h-[66%] flex flex-col">
+        <div className="cq-h-1/2 flex">
+          <CreatureStatus creature={botCreature} />
+          <CreatureDisplay creature={botCreature} isPlayer={false} />
+        </div>
+        <div className="cq-h-1/2 flex flex-row-reverse">
+          <CreatureStatus creature={playerCreature} />
+          <CreatureDisplay creature={playerCreature} isPlayer={true} />
+        </div>
+      </div>
+      <div className="cq-h-[34%] bg-gray-100">
+        <ActionButtons
+          availableButtonSlugs={availableButtonSlugs}
+          emitButtonClick={emitButtonClick}
+          availableInteractiveThingIds={availableInteractiveThingIds}
+          emitThingClick={emitThingClick}
+        />
+      </div>
+    </div>
+  );
+}

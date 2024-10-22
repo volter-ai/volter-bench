@@ -1,0 +1,168 @@
+from mini_game_engine.engine.lib import AbstractGameScene, Button, SelectThing
+import random
+
+
+class MainGameScene(AbstractGameScene):
+    def __init__(self, app, player):
+        super().__init__(app, player)
+        self.bot = app.create_bot("basic_opponent")
+        self.player.active_creature = self.player.creatures[0]
+        self.bot.active_creature = self.bot.creatures[0]
+
+    def __str__(self):
+        return f"""===Battle===
+{self.player.display_name}: {self.player.active_creature.display_name} (HP: {self.player.active_creature.hp}/{self.player.active_creature.max_hp})
+{self.bot.display_name}: {self.bot.active_creature.display_name} (HP: {self.bot.active_creature.hp}/{self.bot.active_creature.max_hp})
+
+> Attack
+> Swap
+"""
+
+    def run(self):
+        while True:
+            player_action = self.player_choice_phase(self.player)
+            bot_action = self.player_choice_phase(self.bot)
+            self.resolution_phase(player_action, bot_action)
+            
+            if self.check_battle_end():
+                break
+        
+        self.reset_creatures_state()
+
+    def player_choice_phase(self, current_player):
+        while True:
+            attack_button = Button("Attack")
+            swap_button = Button("Swap")
+            choices = [attack_button, swap_button]
+            choice = self._wait_for_choice(current_player, choices)
+
+            if choice == attack_button:
+                skill = self.choose_skill(current_player)
+                if skill:
+                    return ("attack", skill)
+            elif choice == swap_button:
+                new_creature = self.choose_creature(current_player)
+                if new_creature:
+                    return ("swap", new_creature)
+
+    def choose_skill(self, player):
+        skills = [SelectThing(skill) for skill in player.active_creature.skills]
+        back_button = Button("Back")
+        choices = skills + [back_button]
+        choice = self._wait_for_choice(player, choices)
+        return choice.thing if choice != back_button else None
+
+    def choose_creature(self, player):
+        available_creatures = [creature for creature in player.creatures if creature != player.active_creature and creature.hp > 0]
+        creatures = [SelectThing(creature) for creature in available_creatures]
+        back_button = Button("Back")
+        choices = creatures + [back_button]
+        choice = self._wait_for_choice(player, choices)
+        return choice.thing if choice != back_button else None
+
+    def resolution_phase(self, player_action, bot_action):
+        actions = [(self.player, player_action), (self.bot, bot_action)]
+        
+        # Execute swap actions first
+        for player, (action, target) in actions:
+            if action == "swap":
+                player.active_creature = target
+                self._show_text(player, f"{player.display_name} swapped to {target.display_name}!")
+                
+                # The swapped-in creature gets hit by the opponent's queued skill
+                opponent = self.bot if player == self.player else self.player
+                opponent_action, opponent_target = bot_action if player == self.player else player_action
+                if opponent_action == "attack":
+                    damage = self.calculate_damage(opponent.active_creature, player.active_creature, opponent_target)
+                    player.active_creature.hp = max(0, player.active_creature.hp - damage)
+                    self._show_text(opponent, f"{opponent.active_creature.display_name} used {opponent_target.display_name} and dealt {damage} damage to the swapped-in {player.active_creature.display_name}!")
+                    
+                    if player.active_creature.hp == 0:
+                        self.force_swap(player)
+
+        # Execute remaining skill actions
+        skill_actions = [(player, action, target) for player, (action, target) in actions if action == "attack" and player.active_creature.hp > 0]
+        if len(skill_actions) == 2:
+            player1, _, _ = skill_actions[0]
+            player2, _, _ = skill_actions[1]
+            if player1.active_creature.speed > player2.active_creature.speed:
+                ordered_actions = skill_actions
+            elif player1.active_creature.speed < player2.active_creature.speed:
+                ordered_actions = [skill_actions[1], skill_actions[0]]
+            else:
+                ordered_actions = random.sample(skill_actions, 2)
+        else:
+            ordered_actions = skill_actions
+
+        for player, _, skill in ordered_actions:
+            opponent = self.bot if player == self.player else self.player
+            damage = self.calculate_damage(player.active_creature, opponent.active_creature, skill)
+            opponent.active_creature.hp = max(0, opponent.active_creature.hp - damage)
+            self._show_text(player, f"{player.active_creature.display_name} used {skill.display_name} and dealt {damage} damage!")
+
+            if opponent.active_creature.hp == 0:
+                self.force_swap(opponent)
+
+    def calculate_damage(self, attacker, defender, skill):
+        if skill.is_physical:
+            raw_damage = float(attacker.attack + skill.base_damage - defender.defense)
+        else:
+            raw_damage = float(attacker.sp_attack) / float(defender.sp_defense) * float(skill.base_damage)
+
+        type_factor = self.get_type_factor(skill.skill_type, defender.creature_type)
+        final_damage = int(type_factor * raw_damage)
+        return max(0, final_damage)
+
+    def get_type_factor(self, skill_type, defender_type):
+        if skill_type == "normal":
+            return 1.0
+        elif skill_type == "fire":
+            if defender_type == "leaf":
+                return 2.0
+            elif defender_type == "water":
+                return 0.5
+        elif skill_type == "water":
+            if defender_type == "fire":
+                return 2.0
+            elif defender_type == "leaf":
+                return 0.5
+        elif skill_type == "leaf":
+            if defender_type == "water":
+                return 2.0
+            elif defender_type == "fire":
+                return 0.5
+        return 1.0
+
+    def force_swap(self, player):
+        available_creatures = [creature for creature in player.creatures if creature.hp > 0]
+        if not available_creatures:
+            return False
+
+        if len(available_creatures) == 1:
+            player.active_creature = available_creatures[0]
+        else:
+            new_creature = self.choose_creature(player)
+            if new_creature:
+                player.active_creature = new_creature
+            else:
+                player.active_creature = available_creatures[0]
+
+        self._show_text(player, f"{player.display_name} swapped to {player.active_creature.display_name}!")
+        return True
+
+    def check_battle_end(self):
+        if all(creature.hp == 0 for creature in self.player.creatures):
+            self._show_text(self.player, "You lost the battle!")
+            self._quit_whole_game()
+            return True
+        elif all(creature.hp == 0 for creature in self.bot.creatures):
+            self._show_text(self.player, "You won the battle!")
+            self._quit_whole_game()
+            return True
+        return False
+
+    def reset_creatures_state(self):
+        for player in [self.player, self.bot]:
+            for creature in player.creatures:
+                creature.hp = creature.max_hp
+        self._show_text(self.player, "All creatures have been restored to full health.")

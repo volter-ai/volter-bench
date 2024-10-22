@@ -1,0 +1,576 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,one_shot_core_status,one_shot_core_error,one_shot_core_traceback,one_shot_view_status,one_shot_view_error,one_shot_view_traceback,logs,project_directory,commit_url,project_type
+2024-10-19 12:11:42,10626621-87ba-4387-ba54-710f5154561e,OneShotCoreAgent_OneShotView,creature_battler_01,1,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView']",ladder/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:17:21,9b57f5f1-b05f-4e56-8433-96afbb1132c2,OneShotCoreAgent_OneShotView,creature_battler_01,3,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView']",ladder/creature_battler_01_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:18:29,6d19f774-3a23-42b5-9a2c-35106b48028d,OneShotCoreAgent_OneShotView,creature_battler_01,2,failure,"
+Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 95, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=2, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",success,,,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 95, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=2, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+","['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView']",ladder/creature_battler_01_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:21:38,4b5ef294-c1dd-46ee-9cd6-de023f172358,OneShotCoreAgent_OneShotView,creature_battler_01,4,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView']",ladder/creature_battler_01_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:22:58,d7b01d27-b842-4e9d-b09b-240bc444087d,OneShotCoreAgent_OneShotView,creature_battler_01,5,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView']",ladder/creature_battler_01_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:26:21,b1f9ceed-40fc-4c74-80c4-2611c274d549,OneShotCoreAgent_OneShotView,creature_battler_01,6,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView']",ladder/creature_battler_01_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:28:26,cd4599f6-aca0-438c-a2e7-90b9b1e4f62d,OneShotCoreAgent_OneShotView,creature_battler_01,7,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView']",ladder/creature_battler_01_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:31:37,f468b412-0410-417f-9d34-ddc1bd9dd240,OneShotCoreAgent_OneShotView,creature_battler_02,1,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView']",ladder/creature_battler_02_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:33:30,6a67da98-768d-4987-b67e-ed6c9ceacda4,OneShotCoreAgent_OneShotView,creature_battler_02,2,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView']",ladder/creature_battler_02_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:36:50,f62c52ce-6edf-4b30-8005-9f8f4927de77,OneShotCoreAgent_OneShotView,creature_battler_02,3,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView']",ladder/creature_battler_02_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:38:23,56fc48ff-7b3d-4c46-98a5-d7bc68dfbcd9,OneShotCoreAgent_OneShotView,creature_battler_02,4,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView']",ladder/creature_battler_02_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:42:47,28b90750-b414-4514-b8d3-1cd70219c6d6,OneShotCoreAgent_OneShotView,creature_battler_02,5,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView']",ladder/creature_battler_02_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:44:21,3c00afee-2dca-4583-bcd0-eb919e5d4a54,OneShotCoreAgent_OneShotView,creature_battler_02,6,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView']",ladder/creature_battler_02_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:48:50,c231173d-b6ae-4e6c-8ae1-b4146271187d,OneShotCoreAgent_OneShotView,creature_battler_02,7,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView']",ladder/creature_battler_02_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:51:23,154d60bc-491c-4c15-970a-8ddc8ae37fac,OneShotCoreAgent_OneShotView,creature_battler_03,1,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView']",ladder/creature_battler_03_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:54:45,9cc64d47-ff4f-4c25-ab80-4baf89281b59,OneShotCoreAgent_OneShotView,creature_battler_03,2,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView']",ladder/creature_battler_03_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 12:59:12,92673e43-433f-4145-afc5-e2a987269286,OneShotCoreAgent_OneShotView,creature_battler_03,3,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView']",ladder/creature_battler_03_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:00:13,a98e5bd4-b5c0-4d6e-960a-bc2451cbbfa1,OneShotCoreAgent_OneShotView,creature_battler_03,4,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView']",ladder/creature_battler_03_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:04:48,9b6a9e2f-e486-4a3e-bfa9-2dedecc63e0b,OneShotCoreAgent_OneShotView,creature_battler_03,5,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView']",ladder/creature_battler_03_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:05:48,c2ce0b7f-3f76-4b4a-9ae8-ba90467a5df4,OneShotCoreAgent_OneShotView,creature_battler_03,6,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView']",ladder/creature_battler_03_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:10:44,806cfc97-973d-4fb0-b8b6-01bb72f88f69,OneShotCoreAgent_OneShotView,creature_battler_03,7,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView']",ladder/creature_battler_03_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:11:35,e32d2294-848b-442a-bf9b-1e775e4e8421,OneShotCoreAgent_OneShotView,creature_battler_04,1,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView']",ladder/creature_battler_04_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:16:11,1926947f-2808-41d1-b9a7-8be716b599db,OneShotCoreAgent_OneShotView,creature_battler_04,2,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView']",ladder/creature_battler_04_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:16:52,8b9e0853-7252-4495-88a2-0cf33f3eb2d2,OneShotCoreAgent_OneShotView,creature_battler_04,3,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView']",ladder/creature_battler_04_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:21:43,6577fdad-2c26-4bb7-83c2-60caed9cc8d8,OneShotCoreAgent_OneShotView,creature_battler_04,4,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView']",ladder/creature_battler_04_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:23:00,58a53bf3-c037-4301-aa69-90766416befb,OneShotCoreAgent_OneShotView,creature_battler_04,5,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView', 'new_prompt_logs/999951_529430_OneShotCoreAgent', 'new_prompt_logs/999949_257697_OneShotView']",ladder/creature_battler_04_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:28:00,1bedeb10-b629-445c-a971-047c2c6865bd,OneShotCoreAgent_OneShotView,creature_battler_04,7,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView', 'new_prompt_logs/999951_529430_OneShotCoreAgent', 'new_prompt_logs/999949_257697_OneShotView', 'new_prompt_logs/999947_249422_OneShotCoreAgent', 'new_prompt_logs/999945_567579_OneShotView']",ladder/creature_battler_04_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:28:12,0a00255d-b44a-491a-85de-b3a4160fcfd7,OneShotCoreAgent_OneShotView,creature_battler_04,6,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView', 'new_prompt_logs/999948_294418_OneShotCoreAgent', 'new_prompt_logs/999946_104625_OneShotView']",ladder/creature_battler_04_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:33:24,f7fa31cf-db81-4d4d-b0c4-14e38f09913d,OneShotCoreAgent_OneShotView,creature_battler_05,1,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView', 'new_prompt_logs/999951_529430_OneShotCoreAgent', 'new_prompt_logs/999949_257697_OneShotView', 'new_prompt_logs/999947_249422_OneShotCoreAgent', 'new_prompt_logs/999945_567579_OneShotView', 'new_prompt_logs/999944_426166_OneShotCoreAgent', 'new_prompt_logs/999942_946240_OneShotView']",ladder/creature_battler_05_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:44:28,1df9886c-9627-4bdb-82f6-4748a284fcbc,OneShotCoreAgent_OneShotView,creature_battler_05,2,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView', 'new_prompt_logs/999948_294418_OneShotCoreAgent', 'new_prompt_logs/999946_104625_OneShotView', 'new_prompt_logs/999943_724489_OneShotCoreAgent', 'new_prompt_logs/999941_778444_OneShotView']",ladder/creature_battler_05_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:51:42,2f6b8404-6716-4efa-addb-ca5b1708c6b3,OneShotCoreAgent_OneShotView,creature_battler_05,3,failure,"
+Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 95, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=2, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",success,,,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 95, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=2, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+","['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView', 'new_prompt_logs/999951_529430_OneShotCoreAgent', 'new_prompt_logs/999949_257697_OneShotView', 'new_prompt_logs/999947_249422_OneShotCoreAgent', 'new_prompt_logs/999945_567579_OneShotView', 'new_prompt_logs/999944_426166_OneShotCoreAgent', 'new_prompt_logs/999942_946240_OneShotView', 'new_prompt_logs/999940_457252_OneShotCoreAgent', 'new_prompt_logs/999939_217153_OneShotView']",ladder/creature_battler_05_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 13:52:46,879f2f09-c863-4036-a72e-b8402336cf60,OneShotCoreAgent_OneShotView,creature_battler_05,4,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView', 'new_prompt_logs/999948_294418_OneShotCoreAgent', 'new_prompt_logs/999946_104625_OneShotView', 'new_prompt_logs/999943_724489_OneShotCoreAgent', 'new_prompt_logs/999941_778444_OneShotView', 'new_prompt_logs/999938_582675_OneShotCoreAgent', 'new_prompt_logs/999937_274663_OneShotView']",ladder/creature_battler_05_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 14:00:39,21459fd4-48db-4e94-baff-243279db1f96,OneShotCoreAgent_OneShotView,creature_battler_05,6,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView', 'new_prompt_logs/999948_294418_OneShotCoreAgent', 'new_prompt_logs/999946_104625_OneShotView', 'new_prompt_logs/999943_724489_OneShotCoreAgent', 'new_prompt_logs/999941_778444_OneShotView', 'new_prompt_logs/999938_582675_OneShotCoreAgent', 'new_prompt_logs/999937_274663_OneShotView', 'new_prompt_logs/999935_816040_OneShotCoreAgent', 'new_prompt_logs/999933_221668_OneShotView']",ladder/creature_battler_05_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 14:08:01,e7f0cf8f-0052-4791-9e33-81829eea37b2,OneShotCoreAgent_OneShotView,creature_battler_05,5,success,,,success,,,success,,,"['new_prompt_logs/999999_138709_OneShotCoreAgent', 'new_prompt_logs/999997_684954_OneShotView', 'new_prompt_logs/999996_301858_OneShotCoreAgent', 'new_prompt_logs/999995_971860_OneShotView', 'new_prompt_logs/999994_155120_OneShotCoreAgent', 'new_prompt_logs/999992_626468_OneShotView', 'new_prompt_logs/999990_455319_OneShotCoreAgent', 'new_prompt_logs/999988_113706_OneShotView', 'new_prompt_logs/999986_261611_OneShotCoreAgent', 'new_prompt_logs/999985_248206_OneShotView', 'new_prompt_logs/999982_569375_OneShotCoreAgent', 'new_prompt_logs/999981_336946_OneShotView', 'new_prompt_logs/999978_703311_OneShotCoreAgent', 'new_prompt_logs/999976_101741_OneShotView', 'new_prompt_logs/999974_993934_OneShotCoreAgent', 'new_prompt_logs/999972_656830_OneShotView', 'new_prompt_logs/999970_989511_OneShotCoreAgent', 'new_prompt_logs/999969_554359_OneShotView', 'new_prompt_logs/999967_460184_OneShotCoreAgent', 'new_prompt_logs/999965_600515_OneShotView', 'new_prompt_logs/999963_822015_OneShotCoreAgent', 'new_prompt_logs/999961_465600_OneShotView', 'new_prompt_logs/999959_794196_OneShotCoreAgent', 'new_prompt_logs/999957_628793_OneShotView', 'new_prompt_logs/999955_912069_OneShotCoreAgent', 'new_prompt_logs/999953_332624_OneShotView', 'new_prompt_logs/999951_529430_OneShotCoreAgent', 'new_prompt_logs/999949_257697_OneShotView', 'new_prompt_logs/999947_249422_OneShotCoreAgent', 'new_prompt_logs/999945_567579_OneShotView', 'new_prompt_logs/999944_426166_OneShotCoreAgent', 'new_prompt_logs/999942_946240_OneShotView', 'new_prompt_logs/999940_457252_OneShotCoreAgent', 'new_prompt_logs/999939_217153_OneShotView', 'new_prompt_logs/999936_666613_OneShotCoreAgent', 'new_prompt_logs/999934_372420_OneShotView']",ladder/creature_battler_05_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game
+2024-10-19 14:09:18,19f88dca-a3e3-43ed-aa46-00fac78974d8,OneShotCoreAgent_OneShotView,creature_battler_05,7,success,,,success,,,success,,,"['new_prompt_logs/999999_838900_OneShotCoreAgent', 'new_prompt_logs/999998_894721_OneShotView', 'new_prompt_logs/999993_187719_OneShotCoreAgent', 'new_prompt_logs/999991_291487_OneShotView', 'new_prompt_logs/999989_583808_OneShotCoreAgent', 'new_prompt_logs/999987_843121_OneShotView', 'new_prompt_logs/999984_821086_OneShotCoreAgent', 'new_prompt_logs/999983_281187_OneShotView', 'new_prompt_logs/999980_507147_OneShotCoreAgent', 'new_prompt_logs/999979_148500_OneShotView', 'new_prompt_logs/999977_121578_OneShotCoreAgent', 'new_prompt_logs/999975_728899_OneShotView', 'new_prompt_logs/999973_105687_OneShotCoreAgent', 'new_prompt_logs/999971_738878_OneShotView', 'new_prompt_logs/999968_451871_OneShotCoreAgent', 'new_prompt_logs/999966_108785_OneShotView', 'new_prompt_logs/999964_514918_OneShotCoreAgent', 'new_prompt_logs/999962_195845_OneShotView', 'new_prompt_logs/999960_994067_OneShotCoreAgent', 'new_prompt_logs/999958_228410_OneShotView', 'new_prompt_logs/999956_889203_OneShotCoreAgent', 'new_prompt_logs/999954_133180_OneShotView', 'new_prompt_logs/999952_276102_OneShotCoreAgent', 'new_prompt_logs/999950_678406_OneShotView', 'new_prompt_logs/999948_294418_OneShotCoreAgent', 'new_prompt_logs/999946_104625_OneShotView', 'new_prompt_logs/999943_724489_OneShotCoreAgent', 'new_prompt_logs/999941_778444_OneShotView', 'new_prompt_logs/999938_582675_OneShotCoreAgent', 'new_prompt_logs/999937_274663_OneShotView', 'new_prompt_logs/999935_816040_OneShotCoreAgent', 'new_prompt_logs/999933_221668_OneShotView', 'new_prompt_logs/999932_849502_OneShotCoreAgent', 'new_prompt_logs/999931_277629_OneShotView']",ladder/creature_battler_05_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/ecf76438768fd6dcd0187ce1a7eacda08e29cd15/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,mge2_game

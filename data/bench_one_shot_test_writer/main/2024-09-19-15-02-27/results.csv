@@ -1,0 +1,673 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url
+2024-09-19 15:02:34,32c0f9ff-3795-4f72-984d-c9a58da7dd3c,QATestWriter2,rps,1,success,,,['new_prompt_logs/1726772552_167351_QATestWriter2'],ladder_view/rps_1/main_game,none
+2024-09-19 15:02:36,5b371b14-2718-4292-b3bc-d09c4db7ca88,QATestWriter2,creature_battle_01,1,success,,,['new_prompt_logs/1726772552_895485_QATestWriter2'],ladder_view/creature_battle_01_1/main_game,none
+2024-09-19 15:02:46,5131af94-53f9-4d26-b540-eedb839b030c,QATestWriter2,creature_battle_05,1,success,,,['new_prompt_logs/1726772552_805205_QATestWriter2'],ladder_view/creature_battle_05_1/main_game,none
+2024-09-19 15:02:56,c57f8d3f-b90e-4250-ba27-2694415236ce,QATestWriter2,rps,3,success,,,['new_prompt_logs/1726772552_531964_QATestWriter2'],ladder_view/rps_3/main_game,none
+2024-09-19 15:02:56,8ccfd121-4a8b-4350-9fbd-d7b72b097720,QATestWriter2,rps,2,success,,,['new_prompt_logs/1726772552_218536_QATestWriter2'],ladder_view/rps_2/main_game,none
+2024-09-19 15:03:18,56f6dff8-677e-4cd5-a14b-0f0ad70be26b,QATestWriter2,creature_battle_01,2,success,,,['new_prompt_logs/1726772552_315873_QATestWriter2'],ladder_view/creature_battle_01_2/main_game,none
+2024-09-19 15:03:26,af87cb36-148c-43ad-b9b4-a4d3b620baf0,QATestWriter2,creature_battle_01,3,success,,,['new_prompt_logs/1726772552_995336_QATestWriter2'],ladder_view/creature_battle_01_3/main_game,none
+2024-09-19 15:05:24,9ac9b4c9-7620-4d80-8075-36a026482f78,QATestWriter2,creature_battle_05,3,success,,,['new_prompt_logs/1726772552_173178_QATestWriter2'],ladder_view/creature_battle_05_3/main_game,none
+2024-09-19 15:06:11,8946e7ce-8a32-49eb-8183-a492adc04f87,QATestWriter2,creature_battle_05,2,failure,"After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 2 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle FAILED [100%]
+
+=================================== FAILURES ===================================
+______________ TestMainGameScene.test_main_game_scene_full_battle ______________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>, player = Default Player
+main_game_scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_main_game_scene_full_battle(self, app, player, main_game_scene):
+        runner = ThreadedSceneRunner()
+        runner.start_game(main_game_scene)
+    
+        # Initial state check
+        assert player.active_creature.prototype_id == ""bubwool""
+        assert main_game_scene.bot.active_creature.prototype_id == ""scizard""
+    
+        # Player's first turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's first turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's second turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's second turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's third turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's third turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's fourth turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fourth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's creature has fainted, forced to swap
+        choices = runner.dequeue_wait_for_choice(player)
+        new_creature = find_select_thing(choices, ""dumbird"")
+        runner.make_choice(new_creature)
+    
+        # Player's fifth turn with new creature
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fifth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Check if the battle has ended
+>       scene_name = runner.dequeue_transition_to_scene()
+
+main_game/tests/test_main_game_scene.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <mini_game_engine.engine.qa_utils.ThreadedSceneRunner object at 0x[REDACTED]>
+
+    def dequeue_transition_to_scene(self) -> str:
+        try:
+            event = self.__game_event_queue.get(timeout=1)
+            if event['type'] == 'scene_transition':
+                return event['scene_name']
+            else:
+                self.__game_event_queue.put(event)  # Put the event back if it's not the one we're looking for
+>               raise ValueError(f""Expected scene_transition event, got {event['type']}"")
+E               ValueError: Expected scene_transition event, got choice_request
+
+../../../../mge2/mini_game_engine/engine/qa_utils.py:160: ValueError
+----------------------------- Captured stdout call -----------------------------
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+Default Player's Bubwool fainted!
+_wait_for_choice(Default Player, [SelectThing(Creature(dumbird))])
+_wait_for_choice received choice SelectThing(Creature(dumbird))
+Default Player sent out Dumbird!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Dumbird used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 1 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Dumbird took 9 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle
+========================= 1 failed, 1 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+","Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 61, in execute
+    run_pytest(f""main_game/tests/test_{self.scene_name}.py"", project_root=self.sdk.project_directory, timeout_seconds=5)
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-std-agents/agent_lib/random_run_utils.py"", line 119, in run_pytest
+    raise AssertionError(f""Pytest failed with exit code {exit_code}. Output:\n{output}"")
+AssertionError: Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 2 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle FAILED [100%]
+
+=================================== FAILURES ===================================
+______________ TestMainGameScene.test_main_game_scene_full_battle ______________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>, player = Default Player
+main_game_scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_main_game_scene_full_battle(self, app, player, main_game_scene):
+        runner = ThreadedSceneRunner()
+        runner.start_game(main_game_scene)
+    
+        # Initial state check
+        assert player.active_creature.prototype_id == ""bubwool""
+        assert main_game_scene.bot.active_creature.prototype_id == ""scizard""
+    
+        # Player's first turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's first turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's second turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's second turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's third turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's third turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's fourth turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fourth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's creature has fainted, forced to swap
+        choices = runner.dequeue_wait_for_choice(player)
+        new_creature = find_select_thing(choices, ""dumbird"")
+        runner.make_choice(new_creature)
+    
+        # Player's fifth turn with new creature
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fifth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Check if the battle has ended
+>       scene_name = runner.dequeue_transition_to_scene()
+
+main_game/tests/test_main_game_scene.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <mini_game_engine.engine.qa_utils.ThreadedSceneRunner object at 0x[REDACTED]>
+
+    def dequeue_transition_to_scene(self) -> str:
+        try:
+            event = self.__game_event_queue.get(timeout=1)
+            if event['type'] == 'scene_transition':
+                return event['scene_name']
+            else:
+                self.__game_event_queue.put(event)  # Put the event back if it's not the one we're looking for
+>               raise ValueError(f""Expected scene_transition event, got {event['type']}"")
+E               ValueError: Expected scene_transition event, got choice_request
+
+../../../../mge2/mini_game_engine/engine/qa_utils.py:160: ValueError
+----------------------------- Captured stdout call -----------------------------
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+Default Player's Bubwool fainted!
+_wait_for_choice(Default Player, [SelectThing(Creature(dumbird))])
+_wait_for_choice received choice SelectThing(Creature(dumbird))
+Default Player sent out Dumbird!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Dumbird used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 1 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Dumbird took 9 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle
+========================= 1 failed, 1 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 90, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/yueranyuan/volter/volter-monorepo/packages/lib-volter-mge2/mge_agents/qa_test_writer/qa_test_writer2.py"", line 66, in execute
+    raise FixableException(f""After {self.max_number_of_runs} attempts to debug, could not pytests. Still have error {e}"")
+common.exceptions.FixableException: After 5 attempts to debug, could not pytests. Still have error Pytest failed with exit code 1. Output:
+============================= test session starts ==============================
+platform darwin -- Python 3.11.6, pytest-7.3.1, pluggy-1.5.0 -- [REDACT]/volter-monorepo/packages/ide/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.11.6', 'Platform': 'macOS-14.1-arm64-arm-64bit', 'Packages': {'pytest': '7.3.1', 'pluggy': '1.5.0'}, 'Plugins': {'asyncio': '0.23.8', 'html': '3.2.0', 'env': '1.1.3', 'metadata': '3.1.1', 'cov': '4.1.0', 'anyio': '4.4.0', 'timeout': '2.3.1', 'sugar': '0.9.7'}}
+rootdir: [REDACT]/volter-monorepo/packages/lib-volter-mge2
+configfile: pytest.ini
+plugins: asyncio-0.23.8, html-3.2.0, env-1.1.3, metadata-3.1.1, cov-4.1.0, anyio-4.4.0, timeout-2.3.1, sugar-0.9.7
+asyncio: mode=Mode.STRICT
+collecting ... collected 2 items
+
+main_game/tests/test_main_game_scene.py::TestMainGameSceneRandomRun::test_main_game_scene_random_run PASSED [ 50%]
+main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle FAILED [100%]
+
+=================================== FAILURES ===================================
+______________ TestMainGameScene.test_main_game_scene_full_battle ______________
+
+self = <tests.test_main_game_scene.TestMainGameScene object at 0x[REDACTED]>
+app = <main_game.main.App object at 0x[REDACTED]>, player = Default Player
+main_game_scene = <main_game.scenes.main_game_scene.MainGameScene object at 0x[REDACTED]>
+
+    def test_main_game_scene_full_battle(self, app, player, main_game_scene):
+        runner = ThreadedSceneRunner()
+        runner.start_game(main_game_scene)
+    
+        # Initial state check
+        assert player.active_creature.prototype_id == ""bubwool""
+        assert main_game_scene.bot.active_creature.prototype_id == ""scizard""
+    
+        # Player's first turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's first turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's second turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's second turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's third turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's third turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's fourth turn
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fourth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Player's creature has fainted, forced to swap
+        choices = runner.dequeue_wait_for_choice(player)
+        new_creature = find_select_thing(choices, ""dumbird"")
+        runner.make_choice(new_creature)
+    
+        # Player's fifth turn with new creature
+        choices = runner.dequeue_wait_for_choice(player)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(player)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Bot's fifth turn
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        attack_button = find_button(choices, ""Attack"")
+        runner.make_choice(attack_button)
+    
+        choices = runner.dequeue_wait_for_choice(main_game_scene.bot)
+        skill = find_select_thing(choices, ""tackle"")
+        runner.make_choice(skill)
+    
+        # Check if the battle has ended
+>       scene_name = runner.dequeue_transition_to_scene()
+
+main_game/tests/test_main_game_scene.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <mini_game_engine.engine.qa_utils.ThreadedSceneRunner object at 0x[REDACTED]>
+
+    def dequeue_transition_to_scene(self) -> str:
+        try:
+            event = self.__game_event_queue.get(timeout=1)
+            if event['type'] == 'scene_transition':
+                return event['scene_name']
+            else:
+                self.__game_event_queue.put(event)  # Put the event back if it's not the one we're looking for
+>               raise ValueError(f""Expected scene_transition event, got {event['type']}"")
+E               ValueError: Expected scene_transition event, got choice_request
+
+../../../../mge2/mini_game_engine/engine/qa_utils.py:160: ValueError
+----------------------------- Captured stdout call -----------------------------
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), SelectThing(Skill(lick)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Bubwool used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 5 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Bubwool took 8 damage!
+Default Player's Bubwool fainted!
+_wait_for_choice(Default Player, [SelectThing(Creature(dumbird))])
+_wait_for_choice received choice SelectThing(Creature(dumbird))
+Default Player sent out Dumbird!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Default Player, [SelectThing(Skill(tackle)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+_wait_for_choice(Basic Opponent, [Button(Attack), Button(Swap)])
+_wait_for_choice received choice Button(Attack)
+_wait_for_choice(Basic Opponent, [SelectThing(Skill(tackle)), SelectThing(Skill(fireball)), Button(Back)])
+_wait_for_choice received choice SelectThing(Skill(tackle))
+Default Player's Dumbird used Tackle!
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard took 1 damage!""}
+BotListener:on_show_event:show_text: {'text': ""Basic Opponent's Scizard used Tackle!""}
+Default Player's Dumbird took 9 damage!
+_wait_for_choice(Default Player, [Button(Attack), Button(Swap)])
+=========================== short test summary info ============================
+FAILED main_game/tests/test_main_game_scene.py::TestMainGameScene::test_main_game_scene_full_battle
+========================= 1 failed, 1 passed in [REDACTED]s ==========================
+PYTEST_EXIT_CODE: 1
+
+",['new_prompt_logs/1726772552_310293_QATestWriter2'],ladder_view/creature_battle_05_2/main_game,none
