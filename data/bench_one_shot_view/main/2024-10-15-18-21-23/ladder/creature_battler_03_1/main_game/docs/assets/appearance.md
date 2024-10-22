@@ -1,0 +1,3 @@
+# Appearance Overview
+
+This game has a fun pop aesthetic, featuring bright, vivid colors, solid shapes, and a minimalist aesthetic. Humans are drawn without faces, and creatures are often drawn in a cute style, with big eyes, and happy expressions. Many of the environments in this game are bright places, filled with a sense of adventure. Locations include wide, open fields, snowy mountains, and vast oceans.

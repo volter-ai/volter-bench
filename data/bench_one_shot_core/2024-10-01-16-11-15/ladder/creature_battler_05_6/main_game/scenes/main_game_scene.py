@@ -1,3 +1,0 @@
-raw_damage = float(attacker.active_creature.attack + skill.base_damage - defender_creature.defense)
-   # ...
-   final_damage = int(raw_damage * type_factor)
