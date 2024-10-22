@@ -42,7 +42,6 @@ def display_run_details_tab(all_data, data_directory):
             st.write(f"Branch: {row['branch']}")  # Added branch information
             
             # GitHub links
-            print(f"data directory: {data_directory}")
             github_url = get_github_url(row, data_directory)
             st.markdown(f"[View logs on GitHub]({github_url})")
             
@@ -50,7 +49,7 @@ def display_run_details_tab(all_data, data_directory):
             st.markdown(f"[View game code on GitHub]({github_code_url})")
             
             if 'commit_url' in row and pd.notna(row['commit_url']):
-                st.markdown(f"[View agent code on GitHub]({row['commit_url']}")
+                st.markdown(f"[View agent code on GitHub]({row['commit_url']})")
             
             # Error and traceback display
             if row['status'] != 'success' or (pd.notna(row['error']) and str(row['error']).lower() != 'nan'):
