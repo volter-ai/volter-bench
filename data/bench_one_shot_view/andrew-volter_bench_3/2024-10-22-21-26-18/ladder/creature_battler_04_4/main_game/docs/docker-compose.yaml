@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: creature_battler_04_1
+    environment:
+      REDIS_URL: "dragonfly"
+    restart: always
+    volumes:
+      - ./src:/code/src
+    ports:
+      - "5006:5006"
+    networks:
+      - backend
+
+  dragonfly:
+    image: "docker.dragonflydb.io/dragonflydb/dragonfly:latest"
+    container_name: dragonfly
+    ulimits:
+      memlock: -1
+    ports:
+      - 0.0.0.0:6379:6379
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
