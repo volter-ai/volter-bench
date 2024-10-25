@@ -5,10 +5,6 @@ def sanitize_branch_name(branch):
     """Convert GitHub branch name to filesystem-safe format."""
     return branch.replace('/', '-')
 
-def get_github_branch_name(branch):
-    """Convert filesystem branch name back to GitHub format."""
-    return branch.replace('-', '/', 1)  # Only replace the first occurrence to handle other dashes
-
 def get_base_github_url(data_directory, branch=None):
     """Extract the base GitHub URL based on the data directory structure."""
     parts = Path(data_directory).parts
@@ -16,14 +12,9 @@ def get_base_github_url(data_directory, branch=None):
         data_index = parts.index('data')
         agent_type = parts[data_index + 1]
         
-        if branch is None:
-            branch = 'main'
-        
-        # Convert sanitized branch name back to GitHub format for URL
-        github_branch = get_github_branch_name(branch)
-        
-        # Use GitHub format in URL, sanitized format in path
-        return f"https://github.com/volter-ai/volter-bench/tree/{github_branch}/data/{agent_type}/{branch}"
+        # Always use 'main' in the tree path, but include sanitized branch name in the data path
+        sanitized_branch = sanitize_branch_name(branch) if branch else 'main'
+        return f"https://github.com/volter-ai/volter-bench/tree/main/data/{agent_type}/{sanitized_branch}"
     except ValueError:
         subdirectory = os.path.basename(data_directory)
         return f"https://github.com/volter-ai/volter-bench/tree/main/data/{subdirectory}"
@@ -48,5 +39,4 @@ def get_code_github_url(row, data_directory):
     formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
     code_path = f"ladder/{row['ladder']}_{row['run']}/main_game"
     
-    url = f"{base_url}/{formatted_timestamp}/{code_path}"
-    return url
+    return f"{base_url}/{formatted_timestamp}/{code_path}"

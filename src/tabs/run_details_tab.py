@@ -39,7 +39,7 @@ def display_run_details_tab(all_data, data_directory):
         
         with st.expander(expander_title):
             st.write(f"Status: {row['status']}")
-            st.write(f"Branch: {row['branch']}")  # Added branch information
+            st.write(f"Branch: {row['branch']}") 
             
             # GitHub links
             github_url = get_github_url(row, data_directory)
