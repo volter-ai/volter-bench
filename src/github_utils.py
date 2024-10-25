@@ -37,6 +37,6 @@ def get_code_github_url(row, data_directory):
     base_url = get_base_github_url(data_directory, branch)
     
     formatted_timestamp = row['file_timestamp'].strftime("%Y-%m-%d-%H-%M-%S")
-    code_path = f"ladder/{row['ladder']}_{row['run']}/main_game"
+    code_path = row['project_directory']
     
     return f"{base_url}/{formatted_timestamp}/{code_path}"
