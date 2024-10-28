@@ -1,0 +1,45 @@
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import withClickable from "@/lib/withClickable"
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
+
+interface CreatureCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  uid: string;
+  name: string;
+  imageUrl: string;
+  hp: number;
+  maxHp: number;
+}
+
+let CreatureCard = React.forwardRef<HTMLDivElement, CreatureCardProps>(
+  ({ className, uid, name, imageUrl, hp, maxHp, ...props }, ref) => (
+    <Card ref={ref} className={cn("w-64", className)} uid={uid} {...props}>
+      <CardHeader className="text-center" uid={`${uid}-header`}>
+        <h3 className="font-semibold">{name}</h3>
+      </CardHeader>
+      <CardContent uid={`${uid}-content`}>
+        <img src={imageUrl} alt={name} className="w-full h-40 object-cover mb-4" />
+        <div className="flex justify-between items-center">
+          <span>HP:</span>
+          <span>{hp}/{maxHp}</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+          <div 
+            className="bg-green-600 h-2.5 rounded-full" 
+            style={{ width: `${(hp / maxHp) * 100}%` }}
+          ></div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+)
+
+CreatureCard.displayName = "CreatureCard"
+
+CreatureCard = withClickable(CreatureCard)
+
+let WrappedCardHeader = withClickable(CardHeader)
+let WrappedCardContent = withClickable(CardContent)
+let WrappedCardFooter = withClickable(CardFooter)
+
+export { CreatureCard, WrappedCardHeader, WrappedCardContent, WrappedCardFooter }
