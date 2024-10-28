@@ -43,7 +43,7 @@ def display_run_details_tab(all_data, data_directory):
             
             # GitHub links
             github_url = get_github_url(row, data_directory)
-            st.markdown(f"[View logs on GitHub]({github_url})")
+            st.markdown(f"[View prompt logs on GitHub]({github_url})")
             
             github_code_url = get_code_github_url(row, data_directory)
             st.markdown(f"[View game code on GitHub]({github_code_url})")
