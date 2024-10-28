@@ -1,0 +1,26 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url,branch_name,project_type,override_model,strong_completion_model,base_chat_completion_model,fast_chat_completion_model,strong_coding_completion_model
+2024-10-28 14:34:14,5250004b-f5fd-468d-aba3-00e84b498617,OneShotCoreAgent,creature_battler_01,1,failure,'c7c9640a-dab5-4c17-b4b8-8f11cc6100a2',"Traceback (most recent call last):
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_core.py"", line 65, in execute
+    await self.sdk.execute_as_task(FileWriterSimpleAgent, proposed_changes=proposed_changes)
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-std-agents/basic_agents/file_writer_agent/simple.py"", line 112, in execute
+    await self.perform_action(action, excerpts)
+  File ""/Users/andrewvolter/Desktop/volter-monorepo/packages/lib-std-agents/basic_agents/file_writer_agent/simple.py"", line 162, in perform_action
+    content = remove_language_markers(sanitize_code_blocks(excerpts[action.excerpt_id]))
+                                                           ~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'c7c9640a-dab5-4c17-b4b8-8f11cc6100a2'
+",['new_prompt_logs/999811_416121_OneShotCoreAgent'],ladder/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/7007d2ae32aa0db99cc1d07970a45b38a947e09b/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_core.py,andrew/update_file_writer,mge2_game,,gpt-4o,claude-3-5-sonnet-20240620,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-10-28 14:34:51,fd2a9978-7b8d-4821-bfbc-d266dc9e005b,OneShotCoreAgent,creature_battler_01,7,success,,,['new_prompt_logs/999800_128730_OneShotCoreAgent'],ladder/creature_battler_01_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/3f635023ed2cf31cb65b9a2bd2ffe2189b58a209/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_core.py,andrew/update_file_writer,mge2_game,,gpt-4o,claude-3-5-sonnet-20240620,gpt-4o-mini,claude-3-5-sonnet-20240620
