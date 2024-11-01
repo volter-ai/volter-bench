@@ -1,0 +1,1644 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url,branch_name,override_model,strong_completion_model,base_chat_completion_model,fast_chat_completion_model,strong_coding_completion_model
+2024-11-01 15:39:39,bd38e2f2-92a3-460e-aa08-8dfc429fe373,OneShotView,creature_battler_01,2,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_01_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:44:24,a4af72cc-512d-4b22-84f6-3712a8bf62c6,OneShotView,creature_battler_01,3,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_01_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:48:04,4604f7b4-7dce-4354-ab34-73da211c691c,OneShotView,creature_battler_01,1,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:49:06,9c0762e1-d110-4429-bf04-a0089675cbc7,OneShotView,creature_battler_01,4,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_01_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:52:35,d6a51e9f-dfbe-4052-a4b5-8b08d1584665,OneShotView,creature_battler_01,5,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_01_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:53:23,a837d635-8404-4280-b39f-7ae04e37c06d,OneShotView,creature_battler_01,6,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_01_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:56:50,99ab5a99-6e90-4f70-b7a2-3db007e37706,OneShotView,creature_battler_01,7,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_01_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 15:57:13,7f1e5f1b-2b69-4042-bc2f-f436c48252e8,OneShotView,creature_battler_02,1,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_02_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:00:48,6d0f6941-e592-4058-b709-e29b83e96a7a,OneShotView,creature_battler_02,2,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_02_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:04:39,3c27de02-59ae-4e65-b980-34bcf205cc1b,OneShotView,creature_battler_02,4,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_02_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:06:21,bd9916a1-5cd6-426b-a14f-fd212966f1f9,OneShotView,creature_battler_02,3,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_02_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:08:47,1453d7d5-0a84-4cb4-b575-fb2ef0bd800e,OneShotView,creature_battler_02,5,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_02_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:10:03,b09e89b2-3b45-4941-9f06-4a34466c5725,OneShotView,creature_battler_02,6,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_02_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:12:50,4463226d-00e7-4b89-94d4-43c7ba69aa05,OneShotView,creature_battler_02,7,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_02_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:15:36,9ffeac6d-2dcd-406c-a25f-302ea4ba1f83,OneShotView,creature_battler_03,1,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_03_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:17:06,168c777d-d06d-4d03-af1b-d18eb1ae900a,OneShotView,creature_battler_03,2,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_03_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:19:54,da522bcd-fc1b-4197-a552-004cd6aa4eb9,OneShotView,creature_battler_03,3,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_03_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:27:10,087c294b-ab4e-4c1b-a7d6-be2ea97c53b4,OneShotView,creature_battler_03,5,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_03_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:30:18,1d52d9e3-9625-43f9-aecc-5c33b3eabdf6,OneShotView,creature_battler_03,4,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_03_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:36:38,54b2be52-0d6e-4b8b-b382-8ce96bc40e6c,OneShotView,creature_battler_03,7,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_03_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:41:28,1db06a0f-c9e8-42e6-b84d-acac2ba83b06,OneShotView,creature_battler_03,6,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_03_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:50:33,392dda8c-67f8-48ac-b15c-0ceb15dcdf56,OneShotView,creature_battler_04,1,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_04_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 16:51:16,b33e33c1-a741-49a5-9cce-ffec59aee683,OneShotView,creature_battler_04,2,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_04_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:02:46,182f6599-841e-464f-ad3c-4fb54944def6,OneShotView,creature_battler_04,4,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_04_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:04:14,ca014754-26a0-42c5-9d03-adfc87e59091,OneShotView,creature_battler_04,3,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_04_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:06:41,5b19770f-e8ba-47da-8bfe-20afa2457dd2,OneShotView,creature_battler_04,5,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_04_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:07:52,d238dc28-0757-407e-a27d-c1c60d2c021c,OneShotView,creature_battler_04,6,success,,,['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_04_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:12:33,81d1f0c4-d3ee-4a9c-82e0-a162c379a706,OneShotView,creature_battler_04,7,success,,,['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_04_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:21:16,bd4c1b90-9747-439e-a6eb-6957f7634b64,OneShotView,creature_battler_05,1,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_05_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:25:53,638b2a63-1c84-409d-81bc-b7bad4a415cf,OneShotView,creature_battler_05,2,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_05_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:35:17,88d8afb0-6b77-4510-bd8c-315ff5ad4206,OneShotView,creature_battler_05,3,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_05_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:40:03,45997a54-70bc-442f-b397-b1b400a2688c,OneShotView,creature_battler_05,4,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_05_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:48:55,2ac0bee6-138a-4b0d-a1aa-eb528e29de5c,OneShotView,creature_battler_05,5,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_05_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 17:53:42,eedf8a7f-094a-4edf-9a8a-f126f7244b61,OneShotView,creature_battler_05,6,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999999_651902_OneShotView'],ladder_view/creature_battler_05_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
+2024-11-01 18:02:41,e3d1b791-7c5f-47e1-b36a-7cb866fb00d5,OneShotView,creature_battler_05,7,failure,"Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24","Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 191, in _run
+    assert not data.get('errors'), f""Errors found {data.get('errors')}""
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Errors found [{'errorMessage': 'Timeout after 120s'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 67, in execute
+    await self.sdk.execute_as_task(ViewQAAgent, run_number=5, verbose=self.verbose)
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 98, in execute
+    await self.execute()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 91, in execute
+    raise e
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 87, in execute
+    await self._run()
+  File ""/home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_qa.py"", line 208, in _run
+    raise wrapped_e
+common.exceptions.FixableException: Detected Error - UI simulator appears to have failed: 
+Error in main process: 364 | async function main() {
+365 |     try {
+366 |         await Promise.race([
+367 |             simulateGameplay(gameUrl),
+368 |             new Promise((_, reject) => setTimeout(() => {
+369 |                 reject(new Error(`Timeout after ${RUN_TIMEOUT / 1000}s`))
+^
+error: Timeout after 120s
+at /home/runner/work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/agent_tools/ui_simulator/ui-simulator.js:369:24
+",['new_prompt_logs/999998_891590_OneShotView'],ladder_view/creature_battler_05_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/9d4433def33d7a787de1cdfc8c1933acefb7bcdd/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,andrew/benchmark_fix,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20240620
