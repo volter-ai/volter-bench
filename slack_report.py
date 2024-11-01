@@ -169,6 +169,7 @@ if __name__ == "__main__":
         metrics = calculate_metrics(latest_results)
         slack_payload = generate_slack_payload(metrics, job_status=job_status, build_url=build_url)
 
+        print(json.dumps(slack_payload, indent=2))
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             f.write(f"slack_payload={json.dumps(slack_payload)}\n")
     except Exception as e:
