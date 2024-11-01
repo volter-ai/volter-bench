@@ -1,0 +1,57 @@
+import { useCurrentButtons } from "@/lib/useChoices.ts";
+import { Play, X } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+
+interface ExamplePlayer {
+    uid: string,
+    stats: {
+        stat1: number,
+    },
+    display_name: string,
+}
+
+interface GameUIData {
+    entities: {
+        player: ExamplePlayer
+    }
+}
+
+export function MainMenuSceneView(props: { data: GameUIData }) {
+    const {
+        availableButtonSlugs,
+        emitButtonClick
+    } = useCurrentButtons()
+
+    const playerName = props.data?.entities?.player?.display_name || "Player";
+    const playerUid = props.data?.entities?.player?.uid || "default_uid";
+
+    return (
+        <div className="w-full h-full bg-gradient-to-b from-blue-500 to-purple-600 flex flex-col items-center justify-between p-8" style={{ aspectRatio: '16/9' }}>
+            <div className="text-6xl font-bold text-white mt-16">Creature Battle</div>
+            
+            <div className="text-2xl text-white">Welcome, {playerName}!</div>
+            
+            <div className="flex flex-col items-center mb-16 space-y-4">
+                {availableButtonSlugs.includes('play') && (
+                    <Button 
+                        uid={`${playerUid}_play_button`}
+                        onClick={() => emitButtonClick('play')}
+                        className="w-48 h-12 text-xl"
+                    >
+                        <Play className="mr-2 h-6 w-6" /> Play
+                    </Button>
+                )}
+                {availableButtonSlugs.includes('quit') && (
+                    <Button 
+                        uid={`${playerUid}_quit_button`}
+                        onClick={() => emitButtonClick('quit')}
+                        className="w-48 h-12 text-xl"
+                        variant="destructive"
+                    >
+                        <X className="mr-2 h-6 w-6" /> Quit
+                    </Button>
+                )}
+            </div>
+        </div>
+    );
+}
