@@ -1,0 +1,40 @@
+import * as React from "react"
+import { Button } from "@/components/ui/button"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+import withClickable from "@/lib/withClickable"
+
+interface SkillButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  uid: string
+  name: string
+  description: string
+  damage?: number
+  accuracy?: number
+}
+
+let SkillButton = React.forwardRef<HTMLButtonElement, SkillButtonProps>(
+  ({ uid, name, description, damage, accuracy, className, ...props }, ref) => {
+    return (
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <Button ref={ref} uid={uid} {...props}>
+            {name}
+          </Button>
+        </HoverCardTrigger>
+        <HoverCardContent>
+          <div className="space-y-2">
+            <h4 className="text-sm font-semibold">{name}</h4>
+            <p className="text-sm">{description}</p>
+            {damage && <p className="text-sm">Damage: {damage}</p>}
+            {accuracy && <p className="text-sm">Accuracy: {accuracy}%</p>}
+          </div>
+        </HoverCardContent>
+      </HoverCard>
+    )
+  }
+)
+
+SkillButton.displayName = "SkillButton"
+
+SkillButton = withClickable(SkillButton)
+
+export { SkillButton }
