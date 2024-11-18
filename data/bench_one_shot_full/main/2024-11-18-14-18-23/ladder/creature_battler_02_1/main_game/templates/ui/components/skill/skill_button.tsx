@@ -1,0 +1,57 @@
+import * as React from "react"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/custom/hover-card"
+import { Button } from "@/components/ui/custom/button"
+import withClickable from "@/lib/withClickable"
+
+interface SkillButtonProps {
+  uid: string
+  name: string
+  description: string
+  stats: {
+    damage?: number
+    accuracy?: number
+    cost?: number
+  }
+  onClick?: () => void
+  disabled?: boolean
+}
+
+let SkillButton = ({
+  uid,
+  name,
+  description,
+  stats,
+  onClick,
+  disabled
+}: SkillButtonProps) => {
+  return (
+    <HoverCard uid={uid}>
+      <HoverCardTrigger uid={`${uid}-trigger`} asChild>
+        <Button
+          uid={`${uid}-button`}
+          variant="default"
+          onClick={onClick}
+          disabled={disabled}
+        >
+          {name}
+        </Button>
+      </HoverCardTrigger>
+      <HoverCardContent uid={`${uid}-content`}>
+        <div className="space-y-2">
+          <h4 className="font-medium leading-none">{name}</h4>
+          <p className="text-sm text-muted-foreground">{description}</p>
+          <div className="flex flex-col gap-1 text-sm">
+            {stats.damage && <div>Damage: {stats.damage}</div>}
+            {stats.accuracy && <div>Accuracy: {stats.accuracy}%</div>}
+            {stats.cost && <div>Cost: {stats.cost}</div>}
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  )
+}
+
+SkillButton = withClickable(SkillButton)
+
+export { SkillButton }
+export type { SkillButtonProps }
