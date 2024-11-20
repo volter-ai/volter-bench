@@ -1,0 +1,1940 @@
+timestamp,run_id,agent_id,ladder,run,status,error,traceback,logs,project_directory,commit_url,branch_name,override_model,strong_completion_model,base_chat_completion_model,fast_chat_completion_model,strong_coding_completion_model
+2024-11-20 14:19:07,6974c6fc-190a-4133-ad55-c5e5d0351bfc,OneShotView,creature_battler_01,5,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_01_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:19:09,c1eaae2b-cb97-4004-986c-dfdb55d08bc0,OneShotView,creature_battler_01,4,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_01_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:19:11,c0d69439-cfa7-45ae-83ad-7c0748a174a7,OneShotView,creature_battler_01,6,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_01_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:19:13,193c8538-90a1-4679-99e5-13733a536e50,OneShotView,creature_battler_01,2,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_01_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:19:15,400123ca-05fa-435e-b459-e357c033a625,OneShotView,creature_battler_01,1,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_01_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:19:18,5d2034fc-d4a5-4bf1-9e49-d3a94db3056c,OneShotView,creature_battler_01,3,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 176ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 176ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_759888_OneShotView'],ladder_view/creature_battler_01_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:15,6a292cdc-d571-4c66-804a-cce2ad891eee,OneShotView,creature_battler_01,7,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_01_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:20,6b7099b3-de46-44c8-bae0-afb7373875db,OneShotView,creature_battler_02,1,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_02_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:22,01a1b95d-facd-46a0-bdab-6d2ba7fa8d55,OneShotView,creature_battler_02,2,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_02_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:24,ee3fe4a2-3e28-402a-8a70-7e83fb8902e1,OneShotView,creature_battler_02,3,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_02_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:26,a35cb978-2094-4482-82f7-82016029ec0a,OneShotView,creature_battler_02,4,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 178ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_02_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:20:28,43ba488b-8c40-4e4d-8b49-8fae7db2b8cd,OneShotView,creature_battler_02,5,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 176ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 176ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_759888_OneShotView'],ladder_view/creature_battler_02_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:26,ec258443-cb9c-4d93-9b10-c14a29bed738,OneShotView,creature_battler_02,6,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_02_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:29,526b2f00-925f-481a-a3b1-a9e83cb33166,OneShotView,creature_battler_02,7,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 179ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 179ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_02_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:34,388a9350-8162-4ec3-b2dd-d819c34c78a5,OneShotView,creature_battler_03,1,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 183ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 183ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_03_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:40,e99b7c16-6a4e-4ce5-9c73-ee55eca29fb2,OneShotView,creature_battler_03,3,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_03_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:43,512efe01-14a6-4ff5-a242-4d56d663bb49,OneShotView,creature_battler_03,2,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_03_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:21:49,e3da27cd-56f4-4f91-862a-efc38ce577ff,OneShotView,creature_battler_03,4,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 182ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 182ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_759888_OneShotView'],ladder_view/creature_battler_03_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:22:43,12e83f6d-8d5e-41a9-8310-a67a4b8f3fb3,OneShotView,creature_battler_03,6,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_03_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:22:46,79b0318f-d714-4e59-b284-19a4cdc9ee59,OneShotView,creature_battler_03,5,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 193ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 193ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_03_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:22:52,30cf926c-ef49-4f4e-a00e-b322666fc8d4,OneShotView,creature_battler_04,1,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_04_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:22:54,b2e5b04b-8e39-483e-9c20-1d8b927b8f5a,OneShotView,creature_battler_03,7,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 202ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 202ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_03_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:22:56,393a5c60-d32b-4427-b46c-e5b65fe64f93,OneShotView,creature_battler_04,2,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 181ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_04_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:23:06,5d8baf92-573f-4dff-82bd-0bbc4c96bf5f,OneShotView,creature_battler_04,3,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 214ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 214ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_759888_OneShotView'],ladder_view/creature_battler_04_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:01,5902b580-5519-488c-a466-d120c7b31cc4,OneShotView,creature_battler_04,4,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 67ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 67ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_04_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:08,33a7e3f3-4d20-4692-85d2-7a791ce7b0b2,OneShotView,creature_battler_04,5,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 314ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 314ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_04_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:12,ebb7f533-d295-4b22-b055-49b0ccede03b,OneShotView,creature_battler_04,6,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 254ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 254ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_04_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:15,724da57a-17ba-434b-922e-e697f967ab69,OneShotView,creature_battler_04,7,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 94ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 94ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_04_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:18,2907e296-4725-4159-8829-17ca6c84d1e0,OneShotView,creature_battler_05,1,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 297ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 297ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_05_1/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:24:22,e6c3ffa7-22c5-4b76-b526-994df81be59b,OneShotView,creature_battler_05,2,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 264ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 58, in file_lock
+    fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 264ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_759888_OneShotView'],ladder_view/creature_battler_05_2/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:25:15,6af39b56-6be5-4fd6-b3a8-c4b146fa58a7,OneShotView,creature_battler_05,3,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 61ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 61ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999996_662134_OneShotView'],ladder_view/creature_battler_05_3/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:25:20,3ba82793-770a-4214-bf75-a070c70da04a,OneShotView,creature_battler_05,4,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 177ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999998_684918_OneShotView'],ladder_view/creature_battler_05_4/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:25:25,55dab8ae-92e6-4ec4-aedb-b3bb93399be2,OneShotView,creature_battler_05,5,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 180ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999997_243387_OneShotView'],ladder_view/creature_battler_05_5/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:25:29,5285c11c-06c8-49c5-9481-5bbaea5101e7,OneShotView,creature_battler_05,6,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 186ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 186ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999999_598770_OneShotView'],ladder_view/creature_battler_05_6/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
+2024-11-20 14:25:34,51cf256b-b86d-4aa8-8a6d-19ffa0f4a1d0,OneShotView,creature_battler_05,7,failure,"$ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+","Traceback (most recent call last):
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_bench/bench_utils.py"", line 93, in execute_agent
+    asyncio.run(agent.execute())
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/runners.py"", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py"", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py"", line 63, in execute
+    await self.sdk.execute_as_task(ViewComponentAuthor)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 42, in execute
+    result = await self._exec()
+             ^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_agents/internal/view/view_component_author.py"", line 146, in _exec
+    await build_ui(project_structure, sdk=self.sdk)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 88, in build_ui
+    await sdk.execute_as_task(BuildAgent, dest_path=dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/volter-common/common/sdk/SDK.py"", line 274, in execute_as_task
+    response = await agent.execute()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 77, in execute
+    build_ui_wrapped(self.sdk.project_structure, self.dest_path)
+  File ""/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/lib-volter-mge2/mge_structure/mge_utils.py"", line 169, in build_ui_wrapped
+    raise FixableException(result.stderr)
+common.exceptions.FixableException: $ tsc; vite build;
+[31mx[39m Build failed in 188ms
+[31merror during build:
+[31mCould not resolve ""./App"" from ""src/main.tsx""[31m
+file: [36m/home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/src/main.tsx[31m
+    at getRollupError (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:395:41)
+    at error (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/parseAst.js:391:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:20006:24)
+    at file:///home/runner/_work/volter-monorepo/volter-monorepo/volter-monorepo/packages/game-ui/node_modules/rollup/dist/es/shared/node-entry.js:19966:26[39m
+error: script ""build"" exited with code 1
+
+",['new_prompt_logs/999995_646452_OneShotView'],ladder_view/creature_battler_05_7/main_game,https://github.com/volter-ai/volter-monorepo/blob/22c8472f5038695a2cbc27e58245cba32799ae4d/packages/lib-volter-mge2/mge_agents/internal/one_shot_gen/one_shot_view.py,main,,gpt-4o,gpt-4o,gpt-4o-mini,claude-3-5-sonnet-20241022
