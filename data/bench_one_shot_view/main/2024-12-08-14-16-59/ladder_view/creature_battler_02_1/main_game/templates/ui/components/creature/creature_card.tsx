@@ -1,0 +1,44 @@
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Card, CardContent, CardHeader, CardTitle, Progress } from "@/components/ui/card"
+import withClickable from "@/lib/withClickable"
+
+interface CreatureCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  uid: string
+  name: string
+  currentHp: number
+  maxHp: number
+  imageUrl: string
+}
+
+let CreatureCard = React.forwardRef<HTMLDivElement, CreatureCardProps>(
+  ({ className, uid, name, currentHp, maxHp, imageUrl, ...props }, ref) => {
+    return (
+      <Card uid={`${uid}-card`} ref={ref} className={cn("w-[300px]", className)} {...props}>
+        <CardHeader uid={`${uid}-header`}>
+          <CardTitle uid={`${uid}-title`}>{name}</CardTitle>
+        </CardHeader>
+        <CardContent uid={`${uid}-content`} className="flex flex-col gap-4">
+          <img
+            src={imageUrl}
+            alt={name}
+            className="h-[200px] w-full object-contain"
+          />
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span>HP</span>
+              <span>{`${currentHp}/${maxHp}`}</span>
+            </div>
+            <Progress uid={`${uid}-progress`} value={(currentHp / maxHp) * 100} />
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+)
+
+CreatureCard.displayName = "CreatureCard"
+
+CreatureCard = withClickable(CreatureCard)
+
+export { CreatureCard }
