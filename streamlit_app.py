@@ -16,6 +16,19 @@ from src.visualizations import create_heatmap
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+def get_unique_non_null_values(series: pd.Series) -> list:
+    """Extract unique non-null values from a pandas series and return them sorted.
+    
+    Args:
+        series: pandas.Series containing potentially mixed types and null values
+        
+    Returns:
+        list: Sorted list of unique non-null values
+    """
+    # Convert to string, filter out null values, and get unique values
+    unique_values = series.dropna().astype(str).unique().tolist()
+    return sorted(unique_values)
+
 def load_all_branch_data(base_dir, agent_type):
     """Load data from all branches for a given agent type."""
     try:
@@ -77,10 +90,11 @@ def main():
             st.error(f"No data found for agent type '{selected_agent_type}'.")
             return
         
-        # Branch filter at the top
+        # Sidebar filters
         st.sidebar.markdown("### Global Filters")
-        available_branches = sorted(all_data['branch'].unique())
         
+        # Branch filter
+        available_branches = sorted(all_data['branch'].unique())
         selected_branch = st.sidebar.selectbox(
             "Select Branch",
             options=['All Branches'] + available_branches,
@@ -88,8 +102,29 @@ def main():
             key='global_branch_filter'
         )
         
-        # Filter data by selected branch
-        filtered_data = all_data if selected_branch == 'All Branches' else all_data[all_data['branch'] == selected_branch]
+        # Project type filter - handle null values safely
+        available_project_types = (
+            get_unique_non_null_values(all_data['project_type'])
+            if 'project_type' in all_data.columns
+            else []
+        )
+        
+        selected_project_type = st.sidebar.selectbox(
+            "Select Project Type",
+            options=['All Projects'] + available_project_types,
+            index=0,
+            key='global_project_filter'
+        )
+        
+        # Apply filters
+        filtered_data = all_data.copy()
+        if selected_branch != 'All Branches':
+            filtered_data = filtered_data[filtered_data['branch'] == selected_branch]
+        if selected_project_type != 'All Projects' and 'project_type' in filtered_data.columns:
+            # Convert to string for comparison to handle mixed types
+            filtered_data = filtered_data[
+                filtered_data['project_type'].astype(str) == selected_project_type
+            ]
         
         if filtered_data.empty:
             st.warning("No data available for the selected filters.")
@@ -102,14 +137,15 @@ def main():
         latest_agent_ladder_success_rates = calculate_agent_ladder_success_rates(latest_run_data)
         
         if latest_success_rates.empty:
-            st.warning("No success rate data available for the selected branch.")
+            st.warning("No success rate data available for the selected filters.")
         else:
             top_model = latest_success_rates.loc[latest_success_rates['success_rate'].idxmax()]
-            col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4, col5 = st.columns(5)
             col1.metric("Top Model", top_model['agent_id'])
             col2.metric("Success Rate", f"{top_model['success_rate']:.2%}")
             col3.metric("Branch", selected_branch)
-            col4.metric("Latest Run Timestamp", latest_file_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
+            col4.metric("Project Type", selected_project_type)
+            col5.metric("Latest Run Timestamp", latest_file_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
         
         # Tabs
         tab1, tab2, tab3, tab4 = st.tabs(["Leaderboard", "Agent Performance", "Run Details", "Raw Data"])
