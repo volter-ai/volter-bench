@@ -1,0 +1,21 @@
+export const INITIAL_VALUES = {
+  MONEY: 100,
+  BARISTA_COUNT: 1,
+  BARISTA_SPEED: 2, // units per second
+  COFFEE_BREW_TIME: 3, // seconds
+  MAX_CUSTOMERS: 3,
+  COFFEE_PRICE: 5,
+};
+
+export const UPGRADE_COSTS = {
+  BARISTA: 50,
+  BARISTA_SPEED: 30,
+  BREW_SPEED: 40,
+  MAX_CUSTOMERS: 60,
+  PRICE_MULTIPLIER: 100,
+};
+
+export const GAME_CONFIG = {
+  CUSTOMER_SPAWN_TIME: 2,
+  COST_MULTIPLIER: 2,
+};

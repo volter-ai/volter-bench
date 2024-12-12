@@ -1,0 +1,16 @@
+export const INITIAL_VALUES = {
+  DRONE_COUNT: 1,
+  MINING_SPEED: 1,  // seconds to mine
+  CARGO_CAPACITY: 10,
+  ASTEROID_LIMIT: 3,
+  CRYSTAL_DENSITY: 50,
+  DRONE_SPEED: 100, // pixels per second
+};
+
+export const UPGRADE_COSTS = {
+  DRONE_COUNT: 30,
+  MINING_SPEED: 50,
+  CARGO_CAPACITY: 75,
+  ASTEROID_LIMIT: 100,
+  CRYSTAL_DENSITY: 90,
+};

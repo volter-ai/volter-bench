@@ -1,0 +1,15 @@
+export const INITIAL_VALUES = {
+  MINER_COUNT: 1,
+  MINING_SPEED: 100, // pixels per second
+  CARRYING_CAPACITY: 10,
+  MAX_MINES: 3,
+  MINE_SIZE: 50,
+};
+
+export const UPGRADE_COSTS = {
+  MINER_COUNT: 100,
+  MINING_SPEED: 50,
+  CARRYING_CAPACITY: 75,
+  MAX_MINES: 150,
+  MINE_SIZE: 125,
+};

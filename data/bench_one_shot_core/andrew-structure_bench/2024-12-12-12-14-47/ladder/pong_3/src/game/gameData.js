@@ -1,0 +1,15 @@
+export const INITIAL_VALUES = {
+  BALL_SPEED: 200,
+  PADDLE_SIZE: 100,
+  BALL_COUNT: 1,
+  PADDLE_SPEED: 300,
+  POINTS_MULTIPLIER: 1
+};
+
+export const UPGRADE_COSTS = {
+  BALL_SPEED: 3,  // Was 10
+  PADDLE_SIZE: 5,  // Was 15
+  BALL_COUNT: 15,  // Was 50
+  PADDLE_SPEED: 7,  // Was 20
+  POINTS_MULTIPLIER: 8  // Was 25
+};
