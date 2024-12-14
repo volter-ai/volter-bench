@@ -1,0 +1,27 @@
+import pytest
+from mini_game_engine.engine.lib import HumanListener, RandomModeGracefulExit, AbstractApp
+from main_game.scenes.main_game_scene import MainGameScene
+from main_game.main import App
+
+class TestMainGameSceneRandomRun:
+    @pytest.fixture
+    def app(self):
+        return App()
+
+    def test_main_game_scene_random_run(self, app):
+        for i in range(10):
+            print(f"starting random run iteration {i}")
+            HumanListener.random_mode = True
+            HumanListener.random_mode_counter = 30  # More moves needed for battle
+
+            player = app.create_player(f"player_{i}")
+            game_scene = MainGameScene(app, player)
+
+            try:
+                game_scene.run()
+            except AbstractApp._QuitWholeGame:
+                print(f"Game ended gracefully for run {i}")
+            except RandomModeGracefulExit:
+                print(f"Random mode completed successfully for run {i}")
+            except Exception as e:
+                pytest.fail(f"Unexpected exception during run {i}: {e}")
